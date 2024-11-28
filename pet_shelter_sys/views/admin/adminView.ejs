@@ -20,24 +20,24 @@
             <div class="profilePicContainer">
                 <img id="imagePreview" src="/images/petDesc/buddy4.png" alt="Current Image" width="200px">
             </div>
-            <p><strong>Animal's ID:</strong> 00187</p>
-            <p><strong>Name:</strong> Buddy</p>
-            <p><strong>Species:</strong> Dog</p>
-            <p><strong>Breed:</strong> Aspin</p>
-            <p><strong>Age:</strong> Adult</p>
-            <p><strong>Sex:</strong> Male</p>
-            <p><strong>Characteristics:</strong> Playful</p>
-            <p><strong>Health Status:</strong> Healthy</p>
-            <p><strong>Arrival Date:</strong> 2024-03-15</p>
-            <p><strong>Adoption Status:</strong> Unadopted</p>
-            <p><strong>Special Needs:</strong> N/A</p>
-            <p><strong>Adoption Date:</strong> N/A</p>
-            <p><strong>Birthday:</strong> 2024-01-01</p>
-            <p><strong>Notes:</strong> Likes to play with kids</p>
-            <p><strong>Size:</strong> Medium</p>
-            <p><strong>Location Rescued:</strong> Malabon City</p>
-            <p><strong>Description:</strong> A loyal great friend. Loves to cuddle and go for walk.</p>
-            <p><strong>Is Desexed:</strong> Yes</p>
+            <p><strong>Animal's ID:</strong> <%= animal.animal_id%></p>
+            <p><strong>Name:</strong> <%= animal.name%></p>
+            <p><strong>Species:</strong> <%= animal.species%></p>
+            <p><strong>Breed:</strong> <%= animal.breed%></p>
+            <p><strong>Age:</strong> <%= animal.age%></p>
+            <p><strong>Sex:</strong> <%= animal.sex%></p>
+            <p><strong>Characteristics:</strong> <%= animal.characteristics%></p>
+            <p><strong>Health Status:</strong> <%= animal.health_status%></p>
+            <p><strong>Arrival Date:</strong> <%= animal.arrival_date%></p>
+            <p><strong>Adoption Status:</strong> <%= animal.adoption_status%></p>
+            <p><strong>Special Needs:</strong> <%= animal.special_needs ? animal.special_needs : 'N/A' %></p>
+            <p><strong>Adoption Date:</strong> <%= animal.adoption_date ? animal.adoption_date : 'N/A' %></p>
+            <p><strong>Birthday:</strong> <%= animal.birthday%></p>
+            <p><strong>Notes:</strong> <%= animal.notes%></p>
+            <p><strong>Size:</strong> <%= animal.size%></p>
+            <p><strong>Location Rescued:</strong> <%= animal.location_rescued%></p>
+            <p><strong>Description:</strong> <%= animal.description%></p>
+            <p><strong>Is Desexed:</strong> <%= animal.is_desexed%></p>
 
             <h2>Pet's Medical Record</h2>
             <p><strong>Vaccination Type:</strong> Rabies</p>

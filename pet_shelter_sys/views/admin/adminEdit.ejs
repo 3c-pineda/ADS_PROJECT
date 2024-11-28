@@ -15,147 +15,150 @@
     <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
     <main>
         <h1 style="margin-left: 35%; color: #20A98C;">Modify Pet's Record</h1>
-        <form action="/admin/adminEdit" method="POST">
+        <form action="/admin/adminEdit/<%= animal.animal_id %>" method="POST" id="editForm" enctype="multipart/form-data">
+
 
         <div class="mainContainer">
             
             <div class="FormContainer_1">
             
 
-                <div class="row">
-                    <div class="input-container">
-                        <input type="text" id="name" placeholder=" " required value="Buddy">
-                        <label class="labels" for="name">Name:</label>
-                        <div class="underline"></div>
-                    </div>
-
-                    <div class="input-container">
-                        <input type="text" id="breed" name="breed"  placeholder=" " required value="Aspin">
-                        <label class="labels" for="breed">Breed:</label>
-                        <div class="underline"></div>
-                    </div>    
-                </div>
-            
-                <div class="row">
-                    <div class="dropdownContainer">
-                        <label class="labelDropDate" for="species">Species:</label>
-                            <select style="color:#FFFFFF" name="species" id="species">
-                                 <option value="dog"selected>Dog</option>
-                                 <option value="cat">Cat</option>
-                                 <option value="other" >Others</option>
-                            </select>
-                    </div>    
-               
-                    <div class="input-container">
-                        <input type="text" id="age" name="age"  placeholder=" " required value="adult">
-                        <label class="labels" for="age">Age:</label>
-                        <div class="underline"></div>
-                    </div>    
-                
+            <div class="row">
+                <div class="input-container">
+                    <input type="text" id="name" name="name" placeholder="<%= animal.name %>">
+                    <label class="labels" for="name">Name:</label>
+                    <div class="underline"></div>
                 </div>
 
-                <div class="row">
-                    <div class="radioButtonContainer">
-                        <legend class="legendRad">Sex:</legend>
-                                <label for="male">Male</label>
-                                <input type="radio" required="required" name="sex" id="male" value="male" required checked>
-                                <br>
-                               <label for="female">Female</label>
-                               <input type="radio" required="required" name="sex" id="female" value="female" required >
-                    </div>
+                <div class="input-container">
+                    <input type="text" id="breed" name="breed" placeholder="<%= animal.breed %>">
+                    <label class="labels" for="breed">Breed:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
 
-                    <div class="input-container">
-                        <input type="text" name="characteristics" placeholder=" " required value="Playful">
-                        <label class="labels" for="characteristics">Characteristics:</label>
-                        <div class="underline"></div>
-                    </div>    
+            <div class="row">
+                <div class="dropdownContainer">
+                    <label class="labelDropDate" for="species">Species:</label>
+                    <select style="color:#FFFFFF" name="species" id="species">
+                        <option value="dog" <%= animal.species === 'dog' ? 'selected' : '' %>>Dog</option>
+                        <option value="cat" <%= animal.species === 'cat' ? 'selected' : '' %>>Cat</option>
+                        <option value="other" <%= animal.species === 'other' ? 'selected' : '' %>>Others</option>
+                    </select>
                 </div>
 
-            
-                <div class="row">
-                    <div class="dropdownContainer">
-                      <label class="labelDropDate" for="dropdown2">Health Status:</label>
-                          <select style="color:#FFFFFF" name="healthstatus" id="dropdown2">
-                             <option value="" selected>Healthy</option>
-                             <option value="">Minor Injured</option>
-                             <option value="">Major Injured</option>
-                          </select>
-                    </div>      
-                    <div class="input-container">
-                        <input type="text" name="specialneeds" placeholder=" " required value="None">
-                        <label class="labels" for="specialneeds">Special Needs:</label>
-                        <div class="underline"></div>
-                    </div>   
-                </div>        
-
-                <div class="row">
-                    <div class="dateContainer">
-                     <label class="labelDropDate" for="date1">Arrival Date</label>
-                          <input type="date" id="date1" name="arrivaldate" value="2024-03-15">
-                    </div>
-
-                    <div class="input-container">
-                        <input type="text" name="notes" placeholder=" " required value="N/A">
-                        <label class="labels" for="text6">Notes:</label>
-                        <div class="underline"></div>
-                    </div>  
+                <div class="input-container">
+                    <input type="text" id="age" name="age" placeholder="<%= animal.age %>">
+                    <label class="labels" for="age">Age:</label>
+                    <div class="underline"></div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="dropdownContainer">
-                       <label class="labelDropDate" for="dropdown3">Adoption Status:</label>
-                           <select style="color:#FFFFFF" name="adoptionstatus" id="dropdown3">
-                             <option value="">Adopted</option>
-                             <option value="" selected>Unadopted</option>
-                           </select>
-                    </div>       
-
-                    <div class="input-container">
-                        <input type="text" name="text7" placeholder=" " required value="Malabon City">
-                        <label class="labels" for="locationres">Location Rescued:</label>
-                        <div class="underline"></div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="dateContainer">
-                        <label class="labelDropDate" for="date2">Adoption Date:</label>
-                              <input type="date" id="date2" name="adoptiondate" value="2000-01-01">
-                    </div>
-
-                    <div class="input-container">
-                        <input type="text" name="description" placeholder=" " required value="A loyal great friend. Loves to cuddle and go for a walk.">
-                        <label class="labels" for="description">Description:</label>
-                        <div class="underline"></div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="dateContainer">
-                        <label class="labelDropDate" for="date3">BirthDay:</label>
-                             <input type="date" id="date3" name="bday" value="2000-01-02">
-                    </div>
-
-                    <div class="dropdownContainer">
-                          <label class="labelDropDate" for="dropdown4">Size:</label>
-                              <select style="color:#FFFFFF" name="size" id="dropdown4">
-                                  <option value="">Big</option>
-                                  <option value="" selected>Medium</option>
-                                  <option value="">Small</option>
-                              </select>
-                    </div>                    
-                </div>
-
-                <div class="row">
-                    <div class="radioButtonContainer">
-                    <legend class="legendRad">Is Desexed?</legend>
-                    <label for="male">Yes</label>
-                    <input type="radio" required="required" name="isdesex" id="male" value="yes" required>
+            <div class="row">
+                <div class="radioButtonContainer">
+                    <legend class="legendRad">Sex:</legend>
+                    <label for="male">Male</label>
+                    <input type="radio" name="sex" id="male" value="Male" <%= animal.sex === 'Male' ? 'checked' : '' %> >
                     <br>
-                   <label for="female">No</label>
-                   <input type="radio" required="required" name="isdesex" id="female" value="no" required checked>
-                    </div>    
-                <button id="submitButton">Submit</button>    
+                    <label for="female">Female</label>
+                    <input type="radio" name="sex" id="female" value="Female" <%= animal.sex === 'Female' ? 'checked' : '' %> >
+                </div>
+
+                <div class="input-container">
+                    <input type="text" name="characteristics" placeholder="<%= animal.characteristics %>">
+                    <label class="labels" for="characteristics">Characteristics:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="dropdownContainer">
+                    <label class="labelDropDate" for="healthstatus">Health Status:</label>
+                    <select style="color:#FFFFFF" name="health_status" id="healthstatus">
+                        <option value="healthy" <%= animal.health_status === 'healthy' ? 'selected' : '' %>>Healthy</option>
+                        <option value="minor_injured" <%= animal.health_status === 'minor_injured' ? 'selected' : '' %>>Minor Injured</option>
+                        <option value="major_injured" <%= animal.health_status === 'major_injured' ? 'selected' : '' %>>Major Injured</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <input type="text" name="special_needs" placeholder="<%= animal.special_needs %>">
+                    <label class="labels" for="specialneeds">Special Needs:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="dateContainer">
+                    <label class="labelDropDate" for="arrivaldate">Arrival Date</label>
+                    <input type="date" id="arrivaldate" name="arrival_date" placeholder="<%= animal.arrival_date %>">
+                </div>
+
+                <div class="input-container">
+                    <input type="text" name="notes" placeholder="<%= animal.notes %>">
+                    <label class="labels" for="notes">Notes:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="dropdownContainer">
+                    <label class="labelDropDate" for="adoptionstatus">Adoption Status:</label>
+                    <select style="color:#FFFFFF" name="adoption_status" id="adoptionstatus">
+                        <option value="adopted" <%= animal.adoption_status === 'adopted' ? 'selected' : '' %>>Adopted</option>
+                        <option value="unadopted" <%= animal.adoption_status === 'unadopted' ? 'selected' : '' %>>Unadopted</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <input type="text" name="location_rescued" placeholder="<%= animal.location_rescued %>">
+                    <label class="labels" for="locationres">Location Rescued:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="dateContainer">
+                    <label class="labelDropDate" for="adoptiondate">Adoption Date:</label>
+                    <input type="date" id="adoptiondate" name="adoptiondate" placeholder="<%= animal.adoption_date %>">
+                </div>
+
+                <div class="input-container">
+                    <input type="text" name="description" placeholder="<%= animal.description %>">
+                    <label class="labels" for="description">Description:</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="dateContainer">
+                    <label class="labelDropDate" for="bday">BirthDay:</label>
+                    <input type="date" id="bday" name="birthday" placeholder="<%= animal.birthday %>">
+                </div>
+
+                <div class="dropdownContainer">
+                    <label class="labelDropDate" for="size">Size:</label>
+                    <select style="color:#FFFFFF" name="size" id="size">
+                        <option value="big" <%= animal.size === 'Big' ? 'selected' : '' %>>Big</option>
+                        <option value="medium" <%= animal.size === 'Medium' ? 'selected' : '' %>>Medium</option>
+                        <option value="small" <%= animal.size === 'Small' ? 'selected' : '' %>>Small</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="radioButtonContainer">
+                    <legend class="legendRad">Is Desexed?</legend>
+                    <label for="yes">Yes</label>
+                    <input type="radio" name="is_desexed" id="yes" value="yes" <%= animal.is_desexed === 'Yes' ? 'checked' : '' %> >
+                    <br>
+                    <label for="no">No</label>
+                    <input type="radio" name="is_desexed" id="no" value="no" <%= animal.is_desexed === 'No' ? 'checked' : '' %> >
+                </div>
+            </div>
+
+            <button id="submitButton">Submit</button>
+
                 </div>
                 
         </div>
@@ -164,7 +167,7 @@
 
             <div class="formProfileImgContainer">
                 <h2>Current Image</h2>
-                <img id="imagePreview" src="/images/petDesc/buddy4.png" alt="Current Image" width="200px">
+                <img id="imagePreview" src="/images/pet_images/<%= animal.animal_id %>/profile.jpeg" alt="Current Image" width="200px">
                 <input type="file" name="profpic" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
                 <label for="profileImageInput" class="editButton">
                     Upload Image
@@ -176,12 +179,13 @@
             <div class="FormMedicalContainer">
                <div class="row"> 
                     <div class="input-container">
-                        <input type="text" name="vactype" placeholder=" " required value="None">
+                        <input type="hidden" name="vacid" placeholder="<%= animal['vacc_id'] ? animal['vacc_id'] : '' %>">
+                        <input type="text" name="vactype" placeholder="<%= animal['vacc_type'] ? animal['vacc_type'] : '' %>">
                         <label class="labels" for="text9">Vaccination Type:</label>
                         <div class="underline"></div>
                     </div>  
                     <div class="input-container">
-                        <input type="text" name="vacdose" placeholder=" " required value="None">
+                        <input type="text" name="vacdose" placeholder="<%= animal['vacc_type'] ? animal['vacc_dose'] : '' %>">
                         <label class="labels" for="text10">Vaccination Dose:</label>
                         <div class="underline"></div>
                     </div>  
@@ -189,15 +193,51 @@
 
                 <div class="dateContainer">
                     <label class="labelDropDate" for="date4">Vaccination Date:</label>
-                    <input type="date" id="date4" name="vacdate" value="2004-04-17">
-                </div>    
-            </div>            
+                    <input type="date" id="date4" name="vacdate" placeholder="<%= animal['vacc_type'] ? animal['vacc_date'] : '' %>">
+                </div>
+            </div>
 
         </div>
         </form>
-        
     </main>
-        
-    
+    <script>
+        document.getElementById('submitButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form from submitting immediately
+
+            let form = document.getElementById('editForm');
+
+            // Get all input fields (including select, text, radio, date)
+            let inputs = form.querySelectorAll('input, select');
+
+            // Loop through each input field and set value to placeholder if empty
+            inputs.forEach(input => {
+                // For text inputs, check if empty and set to placeholder
+                if (input.type === 'text' && !input.value) {
+                    input.value = input.placeholder || ''; // Use placeholder as default value
+                }
+                // For date inputs, check if empty and set to placeholder (if any)
+                if (input.type === 'date' && !input.value) {
+                    input.value = input.placeholder || ''; // Use placeholder as default value
+                }
+                // For radio buttons, if neither is selected, select the one based on its checked attribute
+                if (input.type === 'radio' && !input.checked) {
+                    input.checked = input.checked || false;
+                }
+                if (input.type === 'hidden' && !input.value) {
+                    input.value = input.placeholder || ''; // Use placeholder as default value
+                }
+            });
+
+            // If an image is selected, ensure it's properly handled (you don't need to do anything special here)
+            let imageInput = document.getElementById('profileImageInput');
+            if (imageInput.files.length > 0) {
+                // Ensure the file is appended to the form data when submitted
+                form.appendChild(imageInput);
+            }
+
+            // Submit the form now
+            form.submit();
+        });
+    </script>
 </body>
 </html>

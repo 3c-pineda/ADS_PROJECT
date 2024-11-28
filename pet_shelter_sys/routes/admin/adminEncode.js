@@ -31,6 +31,7 @@ router.post('/', upload.single('profpic'), async (req, res) => {
           formData.append(key, animalData[key]);
       });
 
+      console.log(formData);
       const response = await fetch(apiEndpoint, {
           method: 'POST',
           body: formData,

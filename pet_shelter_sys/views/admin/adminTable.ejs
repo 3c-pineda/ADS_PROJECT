@@ -33,16 +33,6 @@
                             <th>Sex</th>
                             <th>Characteristics</th>
                             <th>Health Status</th>
-                            <th>Arrival Date</th>
-                            <th>Adoption Status</th>
-                            <th>Special Needs</th>
-                            <th>Adoption Date</th>
-                            <th>Birthday</th>
-                            <th>Notes</th>
-                            <th>Size</th>
-                            <th>Location Rescued</th>
-                            <th>Description</th>
-                            <th>Is Desexed</th>
                             <th id="tableAction">Action</th>
                         </tr>
                     </thead>
@@ -58,20 +48,10 @@
                                   <td><%= animal.sex %></td>
                                   <td><%= animal.characteristics %></td>
                                   <td><%= animal.health_status %></td>
-                                  <td><%= animal.arrival_date %></td>
-                                  <td><%= animal.adoption_status %></td>
-                                  <td><%= animal.special_needs %></td>
-                                  <td><%= animal.adoption_date ? animal.adoption_date : 'N/A' %></td>
-                                  <td><%= animal.birthday %></td>
-                                  <td><%= animal.notes %></td>
-                                  <td><%= animal.size %></td>
-                                  <td><%= animal.location_rescued %></td>
-                                  <td><%= animal.description %></td>
-                                  <td><%= animal.is_desexed ? 'Yes' : 'No' %></td>
                                   <td>
                                     <div class="actionButtonContainer">
                                       <button onclick="redirectToViewWithId('<%= animal.id %>')" class="actionButtons">View</button>
-                                      <button onclick="redirectToEditWithId('<%= animal.id %>')" class="actionButtons">Modify</button>
+                                      <a href="/admin/adminEdit/<%= animal.animal_id %>" class="actionButtons">Modify</a>
                                       <form action="/admin/adminDelete" method="POST">
                                         <input type="hidden" name="animal_id" value='<%= animal.animal_id %>'>
                                         <input type="hidden" name="animal_name" value='<%= animal.name %>'>
@@ -91,10 +71,6 @@
                 </table>
                     
             </div>
-            <div class="navigation-buttons">
-                <button id="prevHeaders"><<</button>
-                <button id="nextHeaders">>></button>
-            </div>
             <!-- Second Table with 4 headers -->
             <div class="titleContainer">
             <h1>SHELTER MEDICAL HISTORY DATABASE </h1>
@@ -104,58 +80,30 @@
                 <table id="secondTable">
                     <thead>
                         <tr>
+                            <th>Vaccination ID</th>
                             <th>Vaccination Type</th>
                             <th>Vaccination Date</th>
                             <th>Vaccination Dose</th>
-                            <th>Profile Picture</th>
-                            <th>Action</th>
+                            <th>Animal ID</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Rabies</td>
-                            <td>2003-03-09</td>
-                            <td>2</td>
-                            <td>[link_to_pic.jpg]</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Rabies</td>
-                            <td>2024-06-09</td>
-                            <td>1</td>
-                            <td>[link_to_pic.jpg]</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Pigeon Fox</td>
-                            <td>2024-07-25</td>
-                            <td>1</td>
-                            <td>[link_to_pic.jpg]</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>FVRCP</td>
-                            <td>2024-09-14</td>
-                            <td>1</td>
-                            <td>[link_to_pic.jpg]</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
+                        <% if (animalMed && animalMed.length > 0) { %>
+                            <% animalMed.forEach(animal => { %>
+                                <tr>
+                                    <td><%= animal.vacc_id %></td>
+                                    <td><%= animal.vacc_type %></td>
+                                    <td><%= animal.vacc_date %></td>
+                                    <td><%= animal.vacc_dose %></td>
+                                    <td><%= animal.animal_id %></td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">No medical history found in the database.</td>
+                            </tr>
+                        <% } %>
+                        
                     </tbody>
                 </table>
             </div>
@@ -169,7 +117,7 @@
 }
 
 function redirectToEditWithId(id) {
-  location.href = http://localhost:3000/admin/adminEdit/${id};
+  window.location.href = `http://localhost:3000/admin/adminEdit/${id}`;
 }
 
 function redirectToDeleteWithId(id) {

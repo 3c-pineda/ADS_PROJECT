@@ -13,77 +13,79 @@
     <%- include('partials/nav.ejs', { activePage: 'home' }); %>
     
      <!-- MAIN CONTENT -->
-
     <main>
       <div class="hero">
         <div class="hero-txts">
           <h1>Adopt your forever best friend</h1>
           <p>Give a pet in need a happy home, and a carefree life!</p>
-          <a href="#">Adopt</a>
+          <a href="/adoptGrid">Adopt</a>
         </div>
         <img src="images/landing/hero.png" alt="illustration" class="hero-img">
       </div>
       <div class="cat-imgs container-fluid d-flex flex-column flex-md-row justify-content-evenly align-items-center pt-4 pb-4">
-        <a href="#"><img class="cat-img" src="images/landing/categories/dogs.png" alt=""></a>
-        <a href="#"><img class="cat-img" src="images/landing/categories/cats.png" alt=""></a>
-        <a href="#"><img class="cat-img" src="images/landing/categories/others.png" alt=""></a>
+        <a href="/adoptGrid"><img class="cat-img" src="images/landing/categories/dogs.png" alt="dog"></a>
+        <a href="/adoptGrid"><img class="cat-img" src="images/landing/categories/cats.png" alt="cat"></a>
+        <a href="/adoptGrid"><img class="cat-img" src="images/landing/categories/others.png" alt="others"></a>
       </div>
       <div class="avail-pets">
         <h2>Meet Your New Friend</h2>
         <div class="pet-list d-flex flex-column flex-md-row justify-content-center align-items-center">
-          <a href="#">
+          <!--Animal -->
+          <a href="/petDesc/<%= animal['animal_id'] %>">
             <div class="pet-card">
               <div class="pet-img">
-                <img src="images/landing/avail/dog-1.png" alt="">
+                <img src="images/pet_images/<%= animal['animal_id'] %>/profile.jpeg" alt="">
               </div>
               <div class="pet-card-body">
                 <div class="d-flex justify-content-between align-items-center text-white">
-                  <h4 class="fw-bold">Cinnamon</h4>
-                  <p>Male</p>
+                  <h4 class="fw-bold"><%= animal['name'] %></h4>
+                  <p><%= animal['sex'] %></p>
                 </div>
                 <hr class="fw-bold">
                 <div class="d-flex align-items-center text-white">
-                  <p>Young</p>
+                  <p><%= animal['ageCategory'] %></p>
                   <p class="dot">&#9679;</p>
-                  <p>Golden Retriever</p>
+                  <p><%= animal['breed'] %></p>
                 </div>
               </div>
             </div>
           </a>
-          <a href="#">
+          <!--Animal 1-->
+          <a href="/petDesc/<%= animal1['animal_id'] %>">
             <div class="pet-card">
               <div class="pet-img">
-                <img src="images/landing/avail/cat-1.png" alt="">
+                <img src="images/pet_images/<%= animal1['animal_id'] %>/profile.jpeg" alt="">
               </div>
               <div class="pet-card-body">
                 <div class="d-flex justify-content-between align-items-center text-white">
-                  <h4 class="fw-bold">Tiger</h4>
-                  <p>Male</p>
+                  <h4 class="fw-bold"><%= animal1['name'] %></h4>
+                  <p><%= animal1['sex'] %></p>
                 </div>
                 <hr class="fw-bold">
                 <div class="d-flex align-items-center text-white">
-                  <p>Kitten</p>
+                  <p><%= animal1['ageCategory'] %></p>
                   <p class="dot">&#9679;</p>
-                  <p>Tabby</p>
+                  <p><%= animal1['breed'] %></p>
                 </div>
               </div>
             </div>
           </a>
-          <a href="#">
+          <!--Animal 2-->
+          <a href="/petDesc/<%= animal2['animal_id'] %>">
             <div class="pet-card">
               <div class="pet-img">
-                <img src="images/landing/avail/dog-2.png" alt="">
+                <img src="images/pet_images/<%= animal2['animal_id'] %>/profile.jpeg" alt="">
               </div>
               <div class="pet-card-body">
                 <div class="d-flex justify-content-between align-items-center text-white">
-                  <h4 class="fw-bold">Cream</h4>
-                  <p>Male</p>
+                  <h4 class="fw-bold"><%= animal2['name'] %></h4>
+                  <p><%= animal2['sex'] %></p>
                 </div>
                 <hr class="fw-bold">
                 <div class="d-flex align-items-center text-white">
-                  <p>Adult</p>
+                  <p><%= animal2['ageCategory'] %></p>
                   <p class="dot">&#9679;</p>
-                  <p>Aspin</p>
+                  <p><%= animal2['breed'] %></p>
                 </div>
               </div>
             </div>

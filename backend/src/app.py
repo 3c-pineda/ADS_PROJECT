@@ -55,8 +55,19 @@ def get_animal_by_id(animal_id):
 
     try:
         with connection.cursor(pymysql.cursors.DictCursor) as cursor:
-            # Query to fetch a specific animal by animal_id
-            cursor.execute("SELECT * FROM animal_information WHERE animal_id = %s", (animal_id,))
+        # Assuming `animal_id` is a variable containing the dynamic animal ID
+            cursor.execute("""
+                SELECT ai.animal_id, ai.name, ai.species, ai.breed, ai.age, ai.sex, ai.characteristics, 
+                    ai.health_status, ai.arrival_date, ai.adoption_status, ai.special_needs, ai.adoption_date, 
+                    ai.birthday, ai.notes, ai.size, ai.location_rescued, ai.description, ai.is_desexed, 
+                    COALESCE(amh.vacc_id, NULL) AS vacc_id, 
+                    COALESCE(amh.vacc_type, NULL) AS vacc_type, 
+                    COALESCE(amh.vacc_date, NULL) AS vacc_date, 
+                    COALESCE(amh.vacc_dose, NULL) AS vacc_dose 
+                FROM animal_information ai 
+                LEFT JOIN animal_med_history amh ON ai.animal_id = amh.animal_id
+                WHERE ai.animal_id = %s
+            """, (animal_id,))
             row = cursor.fetchone()  # fetchone to get a single result
 
         if row:
@@ -122,14 +133,34 @@ def create_animal():
     # Parse the form data (animal details)
     animal_data = request.form.to_dict()
 
-    # Validate the required fields
+    # Validate the required fields (those that must always have a value)
     required_fields = ['name', 'species', 'breed', 'age', 'sex', 'characteristics', 'health_status',
-                       'arrival_date', 'adoption_status', 'special_needs', 'adoption_date', 'birthday',
+                       'arrival_date', 'adoption_status', 'special_needs', 'birthday',
                        'notes', 'size', 'location_rescued', 'description', 'is_desexed']
-    
-    missing_fields = [field for field in required_fields if field not in animal_data]
+
+    # Optional fields, such as 'adoption_date', can be empty
+    optional_fields = ['adoption_date', 'vactype', 'vacdose', 'vacdate']
+
+    # Check for missing required fields
+    missing_fields = [field for field in required_fields if field not in animal_data or not animal_data[field]]
+
+    # If there are missing required fields, set them to None (will be NULL in the DB)
+    for field in required_fields:
+        if field not in animal_data or not animal_data[field]:
+            animal_data[field] = None
+
+    # If any required fields are missing, return an error
     if missing_fields:
-        return jsonify({"error": f"Missing fields: {', '.join(missing_fields)}"}), 400
+        return jsonify({"error": f"Missing or empty fields: {', '.join(missing_fields)}"}), 400
+
+    # Check for missing but optional fields (and set to None if empty)
+    for field in optional_fields:
+        if field not in animal_data or not animal_data[field]:
+            animal_data[field] = None
+    vac = False
+    if 'vactype' in animal_data:
+        if animal_data['vactype'] and len(animal_data['vactype']) > 0:
+            vac = True
 
     connection = pymysql.connect(
         host=DB_HOST,
@@ -176,6 +207,20 @@ def create_animal():
             image_path = os.path.join(animal_folder_path, profile_filename)
             image.save(image_path)
 
+            # Save vaccine data if vaccine is in form
+            if vac:
+                sql = """INSERT INTO animal_med_history (
+                    vacc_type,
+                    vacc_date,
+                    vacc_dose,
+                    animal_id
+                ) VALUES (
+                    %s, %s, %s, %s
+                )"""
+                cursor.execute(sql, (animal_data['vactype'], animal_data['vacdate'], animal_data['vacdose'], animal_id))
+                connection.commit()
+
+
             # Return a success response with the new animal ID
             return jsonify({
                 "message": "Animal created successfully",
@@ -190,20 +235,43 @@ def create_animal():
         connection.close()
 
 
-
-
-# Update animal information using animal_id with 'PUT' method
-
 @app.route('/api/animals/<int:animal_id>', methods=['PUT'])
 def update_animal(animal_id):
     """Update an animal's information by animal_id."""
-    data = request.get_json()
+    # Get the incoming request data
+    data = request.form.to_dict()
+    print(data)
 
-    # Check if the required fields are in the request
-    required_fields = ['name', 'species', 'breed', 'age', 'sex', 'characteristics', 'health_status', 'arrival_date', 'adoption_status', 'special_needs', 'adoption_date', 'birthday', 'notes', 'size', 'location_rescued', 'description', 'is_desexed']
-    if not all(field in data for field in required_fields):
-        return jsonify({'error': 'Missing fields'}), 400
+    # Validate the required fields (those that must always have a value)
+    required_fields = ['name', 'species', 'breed', 'age', 'sex', 'characteristics', 'health_status',
+                       'arrival_date', 'adoption_status', 'special_needs', 'birthday',
+                       'notes', 'size', 'location_rescued', 'description', 'is_desexed']
 
+    # Optional fields, such as 'adoption_date', can be empty
+    optional_fields = ['adoption_date', 'vactype', 'vacdose', 'vacdate']
+
+    # Check for missing required fields
+    missing_fields = [field for field in required_fields if field not in data or not data[field]]
+
+    # If there are missing required fields, set them to None (will be NULL in the DB)
+    for field in required_fields:
+        if field not in data or not data[field]:
+            data[field] = None
+
+    # If any required fields are missing, return an error
+    if missing_fields:
+        return jsonify({"error": f"Missing or empty fields: {', '.join(missing_fields)}"}), 400
+
+    # Check for missing but optional fields (and set to None if empty)
+    for field in optional_fields:
+        if field not in data or not data[field]:
+           data[field] = None
+    vac = False
+    if 'vactype' in data:
+        if data['vactype'] and len(data['vactype']) > 0:
+            vac = True
+
+    # Connect to the database
     connection = pymysql.connect(
         host=DB_HOST,
         user=DB_USER,
@@ -213,6 +281,22 @@ def update_animal(animal_id):
 
     try:
         with connection.cursor() as cursor:
+            # Check if the image is part of the request
+            if 'image' in request.files:
+                image = request.files['image']
+
+                # Check if the image has a valid file extension using allowed_file()
+                if image and allowed_file(image.filename):
+                    # Create a folder path for the animal if it doesn't exist
+                    animal_folder_path = os.path.join(app.config['UPLOAD_PATH'], str(animal_id))
+                    if not os.path.exists(animal_folder_path):
+                        os.makedirs(animal_folder_path)
+
+                    # Save the new image as 'profile.jpeg'
+                    profile_filename = 'profile.jpeg'
+                    image_path = os.path.join(animal_folder_path, profile_filename)
+                    image.save(image_path)  # Overwrite the existing image
+
             # SQL query to update animal information
             query = """
                 UPDATE animal_information
@@ -231,8 +315,28 @@ def update_animal(animal_id):
                 data['description'], data['is_desexed'], animal_id
             ))
 
+            # Commit the transaction to save the data
             connection.commit()
 
+
+            # Save vaccine data if vaccine is in form
+            if vac:
+                # Check if data['vacid'] has a value (meaning it's an update request)
+                if 'vacid' in data and data['vacid']:
+                    # If vacid has a value, perform the UPDATE
+                    sql = """UPDATE animal_med_history
+                            SET vacc_type = %s, vacc_date = %s, vacc_dose = %s, animal_id = %s
+                            WHERE vacc_id = %s"""
+                    cursor.execute(sql, (data['vactype'], data['vacdate'], data['vacdose'], animal_id, data['vacid']))
+                    connection.commit()
+                else:
+                    # If vacid is not provided or has no value, perform the INSERT
+                    sql = """INSERT INTO animal_med_history (vacc_type, vacc_date, vacc_dose, animal_id)
+                            VALUES (%s, %s, %s, %s)"""
+                    cursor.execute(sql, (data['vactype'], data['vacdate'], data['vacdose'], animal_id))
+                    connection.commit()
+
+        # Return success response
         return jsonify({'message': 'Animal updated successfully'}), 200
 
     except Exception as e:
@@ -240,6 +344,8 @@ def update_animal(animal_id):
 
     finally:
         connection.close()
+
+
 
 # Delete row using animal_id with 'DELETE' method
 
@@ -527,6 +633,28 @@ def save_email():
         file.write(content)
 
     return jsonify({"message": "Email saved successfully!"}), 200
+
+@app.route('/api/animal-about', methods=['GET'])
+def get_animals_about():
+    """Fetch all rows from the animal_information table and return as JSON."""
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+
+    try:
+        with connection.cursor(pymysql.cursors.DictCursor) as cursor:
+            # Query to fetch all rows
+            cursor.execute("SELECT * FROM animal_information WHERE adoption_status = 'Adopted'")
+            rows = cursor.fetchall()
+
+        # Return the results as JSON
+        return jsonify(rows)
+    finally:
+        # Close the database connection
+        connection.close()
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -6,317 +6,106 @@
     <!-- Load Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Your Custom CSS -->
-    <link rel='stylesheet' href='stylesheets/adoptGrid.css' />
+    <link rel='stylesheet' href='stylesheets/adoptGrid.css'>
 </head>    
-   
+
 <body>
     <!-- NAVIGATION BAR -->
     <%- include('partials/nav.ejs', { activePage: 'home' }); %>
-    
-    <!-- MAIN CONTENT -->    
-    <main> <!-- <Main separated with three unequal size rows-->                        
-        <div class="sf_buttons"> <!-- first row -->
-		
-			<!-- Search Bar with button -->
-            <form class="search_filt" action="action_page.php">
-              <input type="text" placeholder="Search.." name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-            
-            <!-- Filter Button with Dropdown -->
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="sf_buttons">
+            <!-- Search and filter buttons -->
+            <div class="search_filt">
+                <form id="search-form">
+                    <input type="text" id="search-input" placeholder="Search by name, breed, or description..." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+
             <div class="dropdown">
                 <button class="filter-btn">Filter <i class="fa fa-sort-desc" aria-hidden="true"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">Dogs</a>
-                    <a href="#">Cats</a>
-                    <a href="#">Birds</a>
-                    <a href="#">Others</a>
+                    <a href="#" data-filter="all">All</a>
+                    <a href="#" data-filter="dog">Dogs</a>
+                    <a href="#" data-filter="cat">Cats</a>
+                    <a href="#" data-filter="bird">Birds</a>
+                    <a href="#" data-filter="other">Others</a>
+                </div>
+            </div>            
+        </div>
+        
+        <!-- Pet Cards -->
+        <div class="grid">
+            <% animals.forEach(animal => { %>
+            <div class="pet" data-species="<%= animal.species.toLowerCase() %>"
+                data-name="<%= animal.name.toLowerCase() %>"
+                data-breed="<%= animal.breed.toLowerCase() %>"
+                data-description="<%= animal.description.toLowerCase() %>">
+                <div class="pet_image">
+                    <img src="/images/pet_images/<%= animal.animal_id %>/profile.jpeg" alt="<%= animal.name %>" width="100" height="100">
+                </div>
+                <div class="pet_desc">
+                    <h2><%= animal.name %></h2>
+                    <hr>
+                    <p><%= animal.description %></p>
+                    <a href="/petDesc/<%= animal.animal_id %>"><button>Adopt Me</button></a>
                 </div>
             </div>
-			
-                        
-        </div>
-
-
-        <div class="grid"> <!-- second row -->
-            <div class="row1"> <!-- menu row 1-->
-                <div class="column1"> <!-- menu column 1-1 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet12.png" alt="Pet Image1" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Quacky</h2>
-                            <hr>
-                            <p>The playful little duckling with fluffy yellow feathers and an insatiable curiosity!</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>    
-                </div>
-                
-                <div class="column2"> <!-- menu column 1-2 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet8.png" alt="Pet Image2" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Shadow</h2>
-                            <hr>
-                            <p>Known for her playful antics and cuddly nature, always ready to bring warmth and joy to your home. </p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                
-<div class="column3"> <!-- menu column 1-3 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet3.png" alt="Pet Image3" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Buddy</h2>
-                            <hr>
-                            <p>Your loyal great friend. Loves to cuddle and go for a walk.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                                
-                <div class="column4"> <!-- menu column 1-4 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid//pet14.png" alt="Pet Image4" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Squeaky</h2>
-                            <hr>
-                            <p>A lively little hamster who loves to explore her cage. Squeaky is curious and enjoys running on her wheel.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>                                       
-
-            </div>  <!-- end of menu row 1 -->
-            
-            
-            
-            <div class="row2"> <!-- menu row 2-->
-                
-                <div class="column1"> <!-- menu column 2-1 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet.png" alt="Pet Image5" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Roger</h2>
-                            <hr>
-                            <p> A strong and brave German Shepherd who is always ready to protect his loved ones.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>    
-                </div>
-                
-                <div class="column2"> <!-- menu column 2-2 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet11.png" alt="Pet Image6" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Green</h2>
-                            <hr>
-                            <p>Loves to chirp along with music and enjoys a swing in her cage.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                
-                <div class="column3"> <!-- menu     column 2-3 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet6.png" alt="Pet Image7" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Orange</h2>
-                            <hr>
-                            <p>Love exploring every nook and cranny of the house. Orange enjoys long sunbaths and chasing after feathers</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                                
-                <div class="column4"> <!-- menu column 2-4 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet2.png" alt="Pet Image8" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Snow</h2>
-                            <hr>
-                            <p>Cheerful with a sweet and kind personality. Snow loves to curl up on the couch and snuggle with her favorite toys.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>                                       
-                
-            </div><!-- end of menu row 2 -->  
-            
-            
-            
-            <div class="row1"> <!-- menu row 3-->
-                <div class="column1"> <!-- menu column 3-1 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet9.png" alt="Pet Image9" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Morty</h2>
-                            <hr>
-                            <p>Friendly and loves to whistle and dance. Morty is a social bird who enjoys interacting with his human friends.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>    
-                </div>
-                
-                <div class="column2"> <!-- menu column 3-2 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet10.png" alt="Pet Image10" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Coco</h2>
-                            <hr>
-                            <p>Playful and loves to mimic sounds. Coco enjoys climbing and playing with toys, bringing joy to everyone around her.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                
-                <div class="column3"> <!-- menu column 3-3 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet5.png" alt="Pet Image11" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Bruce</h2>
-                            <hr>
-                            <p>Independent spirit, often found perched in high places, observing the world.<br>Thinks he's Batman.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                                
-                <div class="column4"> <!-- menu column 3-4 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet15.png" alt="Pet Image12" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Nibbles</h2>
-                            <hr>
-                            <p>A friendly mouse with a love for treats. Nibbles enjoys cuddling and is always eager for a snack.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>                                       
-
-            </div>  <!-- end of menu row 3 -->
-            
-            
-            
-            <div class="row4"> <!-- menu row 4-->
-                
-                <div class="column1"> <!-- menu column 4-1 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet1.png" alt="Pet Image13" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Bella</h2>
-                            <hr>
-                            <p> Playful and loves adventure. Bella loves to sniff around the neighborhood and enjoys long walks with her human.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>    
-                </div>
-                
-                <div class="column2"> <!-- menu column 4-2 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet16.png" alt="Pet Image6" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Touie</h2>
-                            <hr>
-                            <p>Will love you so much, often offer foods. Thinks he can cook.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                
-                <div class="column3"> <!-- menu     column 4-3 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet7.png" alt="Pet Image15" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Elo</h2>
-                            <hr>
-                            <p>Enjoys playtime with strings and laser pointers. Elo has a playful personality and a love for adventure.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>        
-                                
-                <div class="column4"> <!-- menu column 4-4 -->
-                    <div class="pet"> <!-- div for pet cards -->
-                        <div class="pet_image">
-                            <img src="images/adoptGrid/pet13.png" alt="Pet Image16" width="100" height="100">                            
-                        </div>
-                        <div class="pet_desc">
-                            <h2>Alvin</h2>
-                            <hr>
-                            <p>Love to pose for picture and very photogenic. Great for first-time pet owners and influencers.</p>
-                            <a href="/petDesc"><button>Adopt Me</button></a>
-                        </div> 
-                    </div>
-                </div>                                       
-                
-            </div><!-- end of menu row 4 -->  
-            
-              
-        </div> <!-- end of grid -->
-        
-        <div class="nb_buttons">
-            <button style="border-top-left-radius: 30px; border-bottom-left-radius: 30px;"><< Back</button>
-            <button>Home</button>
-            <button style="border-top-right-radius: 30px; border-bottom-right-radius: 30px;">Next >></button>            
+            <% }); %>
         </div>
     </main>
 
-    <!-- FOOTER -->
-    <%- include('partials/foot.ejs'); %>
-
-    <!-- Load Bootstrap JS (Optional, for interactive components) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!--- Dropdown --->
-    <script> 
-        // Toggle dropdown on button click
-        document.querySelector('.filter-btn').addEventListener('click', function() {
-            var dropdown = this.parentElement;
-            dropdown.classList.toggle('active');
-        });
+    <script>
+        //filter pets
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterLinks = document.querySelectorAll('.dropdown-content a');
+            const petCards = document.querySelectorAll('.pet');
     
-        // Close dropdown if clicked outside
-        window.onclick = function(event) {
-            if (!event.target.matches('.filter-btn')) {
-                var dropdowns = document.querySelectorAll('.dropdown');
-                dropdowns.forEach(function(dropdown) {
-                    dropdown.classList.remove('active');
+            filterLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent page reload
+                    const filter = link.getAttribute('data-filter'); // Get filter category
+    
+                    // Show/hide cards based on filter
+                    petCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-species') === filter) {
+                            card.style.display = 'block'; // Show card
+                        } else {
+                            card.style.display = 'none'; // Hide card
+                        }
+                    });
                 });
-            }
-        }
-    </script>
+            });
+        });
 
-</body>   
+
+        //Search Pets
+        document.addEventListener('DOMContentLoaded', () => {
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+        const petCards = document.querySelectorAll('.pet');
+
+        searchForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent form submission
+            const query = searchInput.value.trim().toLowerCase(); // Get the search query
+
+            petCards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                const breed = card.getAttribute('data-species');
+                const description = card.getAttribute('data-description');
+
+                // Check if query matches name, breed, or description
+                if (name.includes(query) || breed.includes(query) || description.includes(query)) {
+                    card.style.display = 'block'; // Show matching card
+                } else {
+                    card.style.display = 'none'; // Hide non-matching card
+                }
+            });
+        });
+      });
+    </script>
+    
+</body>
 </html>
