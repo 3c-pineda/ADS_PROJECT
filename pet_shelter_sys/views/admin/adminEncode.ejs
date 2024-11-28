@@ -13,7 +13,7 @@
     <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
     <main>
         <h1 style="margin-left: 40%; color: #20A98C;">INPUT DATA</h1>
-        <form action="" method="">
+        <form action="/admin/adminEncode" method="POST" enctype="multipart/form-data">
 
         <div class="mainContainer">
             
@@ -22,7 +22,7 @@
 
                 <div class="row">
                     <div class="input-container">
-                        <input type="text" id="name" placeholder=" " required>
+                        <input type="text" id="name" name="name" placeholder="" required>
                         <label class="labels" for="name">Name:</label>
                         <div class="underline"></div>
                     </div>
@@ -38,9 +38,9 @@
                     <div class="dropdownContainer">
                         <label class="labelDropDate" for="species">Species:</label>
                             <select style="color:#FFFFFF" name="species" id="species">
-                                 <option value="dog">Dog</option>
-                                 <option value="cat">Cat</option>
-                                 <option value="other">Others</option>
+                                 <option value="Dog">Dog</option>
+                                 <option value="Cat">Cat</option>
+                                 <option value="Other">Others</option>
                             </select>
                     </div>    
                
@@ -56,10 +56,10 @@
                     <div class="radioButtonContainer">
                         <legend class="legendRad">Sex:</legend>
                                 <label for="male">Male</label>
-                                <input type="radio" required="required" name="sex" id="male" value="male" required>
+                                <input type="radio" required="required" name="sex" id="male" value="Male" required>
                                 <br>
                                <label for="female">Female</label>
-                               <input type="radio" required="required" name="sex" id="female" value="female" required>
+                               <input type="radio" required="required" name="sex" id="female" value="Female" required>
                     </div>
 
                     <div class="input-container">
@@ -73,14 +73,14 @@
                 <div class="row">
                     <div class="dropdownContainer">
                       <label class="labelDropDate" for="dropdown2">Health Status:</label>
-                          <select style="color:#FFFFFF" name="healthstatus" id="dropdown2">
-                             <option value="">Healthy</option>
-                             <option value="">Minor Injured</option>
-                             <option value="">Major Injured</option>
+                          <select style="color:#FFFFFF" name="health_status" id="dropdown2">
+                             <option value="Healthy">Healthy</option>
+                             <option value="Minor Injury">Minor Injured</option>
+                             <option value="Major Injury">Major Injured</option>
                           </select>
                     </div>      
                     <div class="input-container">
-                        <input type="text" name="specialneeds" placeholder=" " required>
+                        <input type="text" name="special_needs" placeholder=" " required>
                         <label class="labels" for="specialneeds">Special Needs:</label>
                         <div class="underline"></div>
                     </div>   
@@ -89,7 +89,7 @@
                 <div class="row">
                     <div class="dateContainer">
                      <label class="labelDropDate" for="date1">Arrival Date</label>
-                          <input type="date" id="date1" name="arrivaldate">
+                          <input type="date" id="date1" name="arrival_date">
                     </div>
 
                     <div class="input-container">
@@ -102,15 +102,15 @@
                 <div class="row">
                     <div class="dropdownContainer">
                        <label class="labelDropDate" for="dropdown3">Adoption Status:</label>
-                           <select style="color:#FFFFFF" name="adoptionstatus" id="dropdown3">
-                             <option value="">Adopted</option>
-                             <option value="">Unadopted</option>
+                           <select style="color:#FFFFFF" name="adoption_status" id="dropdown3">
+                             <option value="Adopted">Adopted</option>
+                             <option value="Not Adopted">Unadopted</option>
                            </select>
                     </div>       
 
                     <div class="input-container">
-                        <input type="text" name="text7" placeholder=" " required>
-                        <label class="labels" for="locationres">Location Rescued:</label>
+                        <input type="text" name="location_rescued" placeholder=" " required>
+                        <label class="labels" for="location_rescued">Location Rescued:</label>
                         <div class="underline"></div>
                     </div>  
                 </div>
@@ -118,7 +118,7 @@
                 <div class="row">
                     <div class="dateContainer">
                         <label class="labelDropDate" for="date2">Adoption Date:</label>
-                              <input type="date" id="date2" name="adoptiondate">
+                              <input type="date" id="date2" name="adoption_date">
                     </div>
 
                     <div class="input-container">
@@ -131,15 +131,15 @@
                 <div class="row">
                     <div class="dateContainer">
                         <label class="labelDropDate" for="date3">BirthDay:</label>
-                             <input type="date" id="date3" name="bday">
+                             <input type="date" id="date3" name="birthday">
                     </div>
 
                     <div class="dropdownContainer">
                           <label class="labelDropDate" for="dropdown4">Size:</label>
                               <select style="color:#FFFFFF" name="size" id="dropdown4">
-                                  <option value="">Big</option>
-                                  <option value="">Medium</option>
-                                  <option value="">Small</option>
+                                  <option value="Big">Big</option>
+                                  <option value="Medium">Medium</option>
+                                  <option value="Small">Small</option>
                               </select>
                     </div>                    
                 </div>
@@ -148,12 +148,12 @@
                     <div class="radioButtonContainer">
                     <legend class="legendRad">Is Desexed?</legend>
                     <label for="male">Yes</label>
-                    <input type="radio" required="required" name="isdesex" id="male" value="male" required>
+                    <input type="radio" required="required" name="is_desexed" id="male" value="Yes" required>
                     <br>
                    <label for="female">No</label>
-                   <input type="radio" required="required" name="isdesex" id="female" value="female" required>
+                   <input type="radio" required="required" name="is_desexed" id="female" value="No" required>
                     </div>    
-                <button id="submitButton">Submit</button>    
+                <button id="submitButton" type="submit">Submit</button>    
                 </div>
                 
         </div>

@@ -19,32 +19,34 @@
            <h1>Submit a Request</h1>
          </div>
         <div class="left-section">
-            <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Enter your name">
+          <form action="/contactUs" method="POST">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" placeholder="Enter your name">
 
-            <label for="email">Email Address (required)</label>
-            <input type="text" id="email" placeholder="Enter your email">
+              <label for="email">Email Address (required)</label>
+              <input type="text" name="email" id="email" placeholder="Enter your email">
 
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" placeholder="Enter subject">
+              <label for="subject">Subject</label>
+              <input type="text" name="subject" id="subject" placeholder="Enter subject">
 
-            <label for="reason">Reason for Contact (required)</label>
-            <select id="reason">
-                <option value="" disabled selected>Select an option</option>
-                <option value="category1">I will adopt a pet</option>
-                <option value="category2">I have a question about the shelter</option>
-                <option value="category3">I have a feedback about the page</option>
-            </select>
+              <label for="reason">Reason for Contact (required)</label>
+              <select id="reason" name="reason">
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="I will adopt a pet">I will adopt a pet</option>
+                  <option value="I have a question about the shelter">I have a question about the shelter</option>
+                  <option value="I have a feedback about the page">I have a feedback about the page</option>
+              </select>
 
-            <label for="description">Description (required)</label>
-            <textarea id="description" rows="4" placeholder="Describe your request"></textarea>
-            
-              <p class="info-text">Please share your request details, and one of our support staff will reach out to you as soon as possible.</p>
-            
-            <label for="attachment">Attachment</label>
-            <input type="file" id="attachment">
+              <label for="description">Description (required)</label>
+              <textarea id="description" name="description" rows="4" placeholder="Describe your request"></textarea>
+              
+                <p class="info-text">Please share your request details, and one of our support staff will reach out to you as soon as possible.</p>
+              
+              <label for="attachment">Attachment</label>
+              <input type="file" id="attachment">
 
-            <button type="submit">Submit</button>
+              <button type="submit">Submit</button>
+          </form>
         </div>
 
         <div class="center-text">

@@ -13,18 +13,17 @@
     <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
     <main>
         <h1 style="margin-left: 38%; color: #20A98C;">Delete Pet Record</h1>
-       
         <div class="deleteContainer">
             <h2>Delete Confirmation</h2>
-            <p style="text-align: center;">Do you wish to permanently delete Buddy's information from the Database?</p>
-            
-            <form action="delete_record.php" method="post">
-				<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+            <p style="text-align: center;">Do you wish to permanently delete <%= animal_name %>'s information from the Database?</p>
+            <form action="/admin/adminDelete" method="POST">
+				<input type="hidden" name="animal_id" value="<%= animal_id %>">
+				<input type="hidden" name="method" value="DELETE">
                 <div class="buttonsContainer">
 			    	<input class="buttonDelete" type="submit" value="Yes, Delete">
                     <a href="http://localhost:3000/admin/adminTable" class="buttonCancel">Cancel</a>
                 </div>
-			</form>          
+			</form>
         </div>
     </main>
 

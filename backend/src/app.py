@@ -2,10 +2,12 @@ from flask import Flask, jsonify, request
 import pymysql.cursors
 import os
 import bcrypt
+import shutil
 
 app = Flask(__name__)
 
 HOST = os.getenv('FLASK_RUN_HOST', '0.0.0.0')
+app.config['UPLOAD_PATH'] = "../../pet_shelter_sys/public/images/pet_images/"
 
 # Database connection
 DB_HOST = 'localhost'
@@ -96,24 +98,36 @@ def get_animal_by_species(species):
         # Close the database connection
         connection.close()
 
-# Create animnal information with 'POST' method
+# Utility function to check allowed file extensions
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = ['jpeg','jpg','png']
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/api/animals', methods=['POST'])
 def create_animal():
-    """Add a new animal to the database."""
-    # Parse the JSON data from the request
-    data = request.json
+    """Add a new animal to the database and store the uploaded image."""
+    
+    # Check if an image was uploaded
+    if 'image' not in request.files:
+        return jsonify({"error": "No image uploaded"}), 400
 
-    # Validate input data
-    required_fields = [
-        'name', 'species', 'breed', 'age', 'sex', 'characteristics',
-        'health_status', 'arrival_date', 'adoption_status',
-        'special_needs', 'adoption_date', 'birthday', 'notes',
-        'size', 'location_rescued', 'description', 'is_desexed'
-    ]
+    image = request.files['image']
+    
+    # Check if the image has a valid filename and extension
+    if image and allowed_file(image.filename):
+        filename = image.filename  # Use original filename
+    else:
+        return jsonify({"error": "Invalid file type. Only PNG, JPG, JPEG, GIF are allowed."}), 400
+    
+    # Parse the form data (animal details)
+    animal_data = request.form.to_dict()
 
-    # Ensure all required fields are present
-    missing_fields = [field for field in required_fields if field not in data]
+    # Validate the required fields
+    required_fields = ['name', 'species', 'breed', 'age', 'sex', 'characteristics', 'health_status',
+                       'arrival_date', 'adoption_status', 'special_needs', 'adoption_date', 'birthday',
+                       'notes', 'size', 'location_rescued', 'description', 'is_desexed']
+    
+    missing_fields = [field for field in required_fields if field not in animal_data]
     if missing_fields:
         return jsonify({"error": f"Missing fields: {', '.join(missing_fields)}"}), 400
 
@@ -126,36 +140,47 @@ def create_animal():
 
     try:
         with connection.cursor() as cursor:
-            # SQL query to insert a new animal
+            # Insert the animal data into the database
             sql = """
                 INSERT INTO animal_information (
-                    name, species, breed, age, sex, characteristics,
-                    health_status, arrival_date, adoption_status,
-                    special_needs, adoption_date, birthday, notes,
-                    size, location_rescued, description, is_desexed
+                    name, species, breed, age, sex, characteristics, health_status, arrival_date,
+                    adoption_status, special_needs, adoption_date, birthday, notes, size, location_rescued,
+                    description, is_desexed
                 )
                 VALUES (
-                    %s, %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
                 )
             """
             cursor.execute(sql, (
-                data['name'], data['species'], data['breed'], data['age'],
-                data['sex'], data['characteristics'], data['health_status'],
-                data['arrival_date'], data['adoption_status'],
-                data['special_needs'], data['adoption_date'], data['birthday'],
-                data['notes'], data['size'], data['location_rescued'],
-                data['description'], data['is_desexed']
+                animal_data['name'], animal_data['species'], animal_data['breed'], animal_data['age'],
+                animal_data['sex'], animal_data['characteristics'], animal_data['health_status'],
+                animal_data['arrival_date'], animal_data['adoption_status'], animal_data['special_needs'],
+                animal_data['adoption_date'], animal_data['birthday'], animal_data['notes'], animal_data['size'],
+                animal_data['location_rescued'], animal_data['description'], animal_data['is_desexed']
             ))
 
-            # Commit the transaction
+            # Commit the transaction to save the data
             connection.commit()
 
-            # Return a success response with the newly created animal ID
+            # Get the newly inserted animal's ID (primary key)
+            animal_id = cursor.lastrowid
+
+            # Create a folder named after the animal ID
+            animal_folder_path = os.path.join(app.config['UPLOAD_PATH'], str(animal_id))
+
+            if not os.path.exists(animal_folder_path):
+                os.makedirs(animal_folder_path)
+
+            # Save the image as 'profile.<original_extension>'
+            profile_filename = f"profile.jpeg"
+            image_path = os.path.join(animal_folder_path, profile_filename)
+            image.save(image_path)
+
+            # Return a success response with the new animal ID
             return jsonify({
                 "message": "Animal created successfully",
-                "animal_id": cursor.lastrowid
+                "animal_id": animal_id,
+                "image_path": image_path
             }), 201
 
     except pymysql.MySQLError as e:
@@ -163,6 +188,7 @@ def create_animal():
 
     finally:
         connection.close()
+
 
 
 
@@ -237,6 +263,12 @@ def delete_animal(animal_id):
                 return jsonify({'error': 'Animal not found'}), 404
 
             connection.commit()
+
+            # delete folder images
+
+            animal_image_folder = os.path.join(app.config['UPLOAD_PATH'], str(animal_id))
+            if os.path.exists(animal_image_folder):
+                shutil.rmtree(animal_image_folder)
 
         return jsonify({'message': 'Animal deleted successfully'}), 200
 
@@ -471,6 +503,30 @@ def login_admin():
 
     finally:
         connection.close()
+
+# Contact us post api end point
+@app.route("/api/contact-us", methods=["POST"])
+def save_email():
+    data = request.get_json()
+    print(data)
+    # Validate input data
+    required_fields = ['name', 'email', 'subject', 'reason', 'description']
+
+    # Ensure all required fields are present
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        return jsonify({"error": f"Missing fields: {', '.join(missing_fields)}"}), 400
+
+    filename = f"./emails/{data['email']}.txt"
+
+    # Prepare the content to write to the file (e.g., format it as a string)
+    content = f"Name: {data['name']}\nEmail: {data['email']}\nSubject: {data['subject']}\nReason: {data['reason']}\nDescription: {data['description']}\n\n"
+
+    # Write to the file
+    with open(filename, 'a') as file:
+        file.write(content)
+
+    return jsonify({"message": "Email saved successfully!"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True)

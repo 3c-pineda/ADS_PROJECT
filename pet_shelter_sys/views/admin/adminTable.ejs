@@ -47,113 +47,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example data rows -->
-                        <tr>
-                            <td>00187</td>
-                            <td>Buddy</td>
-                            <td>Dog</td>
-                            <td>Aspin</td>
-                            <td>Adult</td>
-                            <td>Male</td>
-                            <td>Playful</td>
-                            <td>Healthy</td>
-                            <td>2024-03-15</td>
-                            <td>Unadopted</td>
-                            <td>None</td>
-                            <td>N/A</td>
-                            <td>2024-01-01</td>
-                            <td>Likes to play with kids</td>
-                            <td>Medium</td>
-                            <td>Downtown Manila</td>
-                            <td>A loyal great friend. Loves to cuddle and go for walk.</td>
-                            <td>Yes</td>
-                            <td>
-                                <div class="actionButtonContainer">
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>00188</td>
-                            <td>Belle</td>
-                            <td>Dog</td>
-                            <td>Golden Retriever</td>
-                            <td>Elder</td>
-                            <td>Female</td>
-                            <td>Friendly, Energetic</td>
-                            <td>Healthy</td>
-                            <td>2014-03-15</td>
-                            <td>Unadopted</td>
-                            <td>None</td>
-                            <td>N/A</td>
-                            <td>2022-03-15</td>
-                            <td>Likes to play with kids</td>
-                            <td>Medium</td>
-                            <td>Downtown Manila</td>
-                            <td>A cheerful young labrador who loves people</td>
-                            <td>Yes</td>
-                            <td>
-                                <div class="actionButtonContainer">
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>00189</td>
-                            <td>Columbina</td>
-                            <td>Other</td>
-                            <td>Dove</td>
-                            <td>Young</td>
-                            <td>Female</td>
-                            <td>Gentle, Calm</td>
-                            <td>Healthy</td>
-                            <td>2024-06-10</td>
-                            <td>Unadopted</td>
-                            <td>Special diet, Quiet place</td>
-                            <td>N/A</td>
-                            <td>2023-06-10</td>
-                            <td>Prefers to be alone</td>
-                            <td>small</td>
-                            <td>Near Downtown Makati </td>
-                            <td>A gentle dove with pure white feathers; very calm</td>
-                            <td>No</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>00190</td>
-                            <td>Tom</td>
-                            <td>Cat</td>
-                            <td>Domestic Shorthair</td>
-                            <td>Young</td>
-                            <td>Male</td>
-                            <td>Quiet,Affectionate</td>
-                            <td>Minor Injured</td>
-                            <td>2024-07-22</td>
-                            <td>Unadopted</td>
-                            <td>Medication needed for injury</td>
-                            <td>N/A</td>
-                            <td>2019-07-22</td>
-                            <td>Nees calm enviroment</td>
-                            <td>small</td>
-                            <td>Suburb of Navotas</td>
-                            <td>Calm cat that enjoys a warm lap to sit on</td>
-                            <td>No</td>
-                            <td>
-                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
-                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
-                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
-                            </td>
-                        </tr>
-                                        
-                        <!-- Add more rows as needed -->
+                            <% if (animals && animals.length > 0) { %>
+                              <% animals.forEach(animal => { %>
+                                <tr>
+                                  <td><%= animal.animal_id %></td>
+                                  <td><%= animal.name %></td>
+                                  <td><%= animal.species %></td>
+                                  <td><%= animal.breed %></td>
+                                  <td><%= animal.age %></td>
+                                  <td><%= animal.sex %></td>
+                                  <td><%= animal.characteristics %></td>
+                                  <td><%= animal.health_status %></td>
+                                  <td><%= animal.arrival_date %></td>
+                                  <td><%= animal.adoption_status %></td>
+                                  <td><%= animal.special_needs %></td>
+                                  <td><%= animal.adoption_date ? animal.adoption_date : 'N/A' %></td>
+                                  <td><%= animal.birthday %></td>
+                                  <td><%= animal.notes %></td>
+                                  <td><%= animal.size %></td>
+                                  <td><%= animal.location_rescued %></td>
+                                  <td><%= animal.description %></td>
+                                  <td><%= animal.is_desexed ? 'Yes' : 'No' %></td>
+                                  <td>
+                                    <div class="actionButtonContainer">
+                                      <button onclick="redirectToViewWithId('<%= animal.id %>')" class="actionButtons">View</button>
+                                      <button onclick="redirectToEditWithId('<%= animal.id %>')" class="actionButtons">Modify</button>
+                                      <form action="/admin/adminDelete" method="POST">
+                                        <input type="hidden" name="animal_id" value='<%= animal.animal_id %>'>
+                                        <input type="hidden" name="animal_name" value='<%= animal.name %>'>
+                                        <input type="hidden" name="method" value="POST">
+                                        <button type="submit" class="actionButtons">Delete</button>
+                                      </form>
+                                    </div>
+                                  </td>
+                                </tr>
+                              <% }); %>
+                            <% } else { %>
+                              <tr>
+                                <td colspan="19">No animals found in the database.</td>
+                              </tr>
+                            <% } %>
                     </tbody>
                 </table>
                     
@@ -231,17 +164,17 @@
     </div>
 
     <script>
-        function redirectToViewWithId(id){
-           location.href='http://localhost:3000/admin/adminView';
-        }
+        function redirectToViewWithId(id) {
+  location.href = http://localhost:3000/admin/adminView/${id};
+}
 
-        function redirectToEditWithId(id){
-            location.href='http://localhost:3000/admin/adminEdit';
-        }
+function redirectToEditWithId(id) {
+  location.href = http://localhost:3000/admin/adminEdit/${id};
+}
 
-        function redirectToDeleteWithId(id){
-            location.href='http://localhost:3000/admin/adminDelete'
-        }
+function redirectToDeleteWithId(id) {
+  location.href = http://localhost:3000/admin/adminDelete/${id};
+}
 
         
         // Navigation for header buttons
@@ -290,4 +223,3 @@
     </script>
 </body>
 </html>
-
