@@ -1,0 +1,101 @@
+.table-container, .second-table-container{
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+.titleContainer{
+    color:#20A98C;
+    text-align: center;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.table-container{
+    max-height: 300px;
+}
+th, td {
+    border: 1px solid #20A98C; 
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #20A98C;
+    color: #FFFFFF; 
+}
+
+td {
+    background-color: #f9f9f9;
+    color:#2E2E2E
+}
+
+td:hover {
+    background-color: #f1f1f1;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.navigation-buttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.navigation-buttons button {
+    background-color: #20A98C;
+    color: white;
+    border: none;
+    font-family: Arial;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+.navigation-buttons button {
+    margin: 5px;
+    border-radius: 30px;
+}
+
+.navigation-buttons button:hover {
+    background: linear-gradient(to right, #a5d6a7, #81c784);
+    box-shadow: 0 0 10px rgba(251, 192, 45, 0.5);
+}
+
+.actionButtons {
+    background-color: #20A98C;
+    color:white;
+    padding: 10px 20px;
+    font-size:16px;
+    margin-right:10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    font-family: Arial;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    margin-top:10px;
+    display: inline-block;
+}
+
+.actionButtons:hover {
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+.actionButtonContainer{
+    display:flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.table-container, .second-table-container {
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd; 
+}

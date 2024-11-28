@@ -1,0 +1,568 @@
+:root {
+  --white: #ffffff;
+  --green: #20a98c;
+  --dark-green: #18856d;
+  --black: #2e2e2e;
+  --gray: #f1f1f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* NAVIGATION BAR */
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--green); /* to be remove later */
+  padding: 20px 50px 20px 50px;
+}
+
+.navigation > .special-btn {
+  display: none;
+}
+
+.navigation > .mobile-view {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.burger-menu span {
+  height: 2px;
+  width: 25px;
+  background-color: var(--white);
+  margin: 2px 0;
+}
+
+.navigation > .menu-items {
+  display: none;
+  flex-direction: column;
+}
+
+.navigation a {
+  color: var(--white);
+}
+
+.menu-items > a {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.menu-items > a:hover {
+  border-bottom: 2px solid var(--white);
+}
+
+.navigation > .menu-active {
+  display: flex; /* Show menu items when menu-active is applied */
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: var(--green);
+  padding: 20px 50px 20px 50px;
+}
+
+footer a {
+  color: var(--white);
+  transition: 0.3s ease-in-out;
+}
+
+footer > .footer-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+footer > .footer-items > div > p {
+  color: var(--black);
+  font-weight: 500;
+  padding-top: 15px;
+}
+
+footer > .footer-items > div > .footer-links {
+  display: flex;
+  flex-direction: column;
+}
+
+footer > .footer-items > div > .footer-links > a {
+  padding-bottom: 10px;
+}
+
+footer > p {
+  color: var(--black);
+  text-align: center;
+  font-weight: 500;
+}
+
+hr {
+  color: var(--white);
+}
+
+main .hero {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--green);
+  align-items: center;
+}
+
+.hero-img {
+  height: 450px;
+  width: auto;
+  display: none;
+}
+
+.hero-txts {
+  width: 100%;
+  color: var(--white);
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-txts h1 {
+  font-weight: 900;
+  font-size: 7rem;
+}
+
+.hero-txts p {
+  font-size: 2.3rem;
+}
+
+.hero-txts a {
+  font-size: 1.5rem;
+  color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: 50px;
+  padding: 8px 100px 8px 100px;
+  transition: background-color 0.3s ease-in-out;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-txts a:hover {
+  background-color: var(--white);
+  color: var(--green);
+}
+
+.cat-imgs {
+  background-color: var(--gray);
+}
+
+.cat-img {
+  height: 250px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.cat-img:hover {
+  filter: brightness(75%);
+}
+
+.avail-pets {
+  padding: 20px 50px 20px 50px;
+}
+
+.pet-card {
+  height: 400px;
+  width: 280px;
+  background-color: var(--green);
+  border-radius: 20px;
+  margin: 10px 0px 10px 0px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pet-card:hover {
+  background-color: var(--dark-green);
+}
+
+.pet-img {
+  height: 60%;
+  clip-path: inset(0);
+}
+
+.pet-img img {
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.pet-card-body {
+  height: 40%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 20px;
+}
+
+.cat-imgs > a:nth-child(2) {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dot {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 10px;
+}
+
+.more-info {
+  background-color: var(--gray);
+  padding: 20px 50px 20px 50px;
+}
+
+.more-info-card {
+  height: 460px;
+  width: 280px;
+}
+
+.more-info-img {
+  height: 65%;
+  clip-path: inset(0);
+}
+
+.more-info-img img {
+  width: 100%;
+  border-radius: 100%;
+}
+
+.more-info-link {
+  font-weight: 500;
+  background-color: var(--green);
+  padding: 10px 25px 10px 25px;
+  color: var(--white);
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.more-info-link:hover {
+  color: var(--white);
+  background-color: var(--dark-green);
+}
+
+.more-info > div:nth-child(2) {
+  margin: 15px 0px 15px 0px;
+}
+
+@media only screen and (min-width: 992px) {
+  /* NAVIGATION BAR */
+  .burger-menu {
+    display: none;
+  }
+
+  .navigation > .mobile-view {
+      width: auto;
+  }
+
+  .navigation{
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .navigation > .menu-items {
+    display: flex;
+    flex-direction: row;
+    transition: height 0.3s ease-in-out;
+  }
+
+  .navigation > .menu-items > a {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease-in-out;
+  }
+
+  .navigation > .menu-items > a:hover {
+    border-bottom: 2px solid var(--white);
+  }
+
+  .navigation > .special-btn {
+    display: block;
+    border: 2px solid var(--white);
+    padding: 5px 30px 5px 30px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .navigation > .special-btn:hover {
+    background-color: var(--white);
+    color: var(--green);
+  }
+
+  .menu-items > .special-btn-hack {
+    display: none;
+  }
+
+  /* MAIN */
+  .hero-txts {
+    width: 50%;
+  }
+
+  .hero-img {
+    display: block;
+  }
+  .hero-txts a {
+    width: 50%;
+  }
+
+  .cat-img {
+    height: 350px;
+  }
+
+  .pet-card {
+    margin: 0px 20px 0px 20px;
+  }
+
+  .more-info > div:nth-child(2) {
+    margin: 0px 30px 0px 30px;
+  }
+
+  /* FOOTER */
+
+  footer > .footer-items {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+/* ABOUT US CONTENT */
+
+/* About us background section 1 */
+main .hero1 {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--green);
+  align-items: center;
+}
+/* About us image section 1 */
+.shelter-img {
+  height: 500px; /* Change to auto for responsive height */
+  width: 700px; /* Change to 100% for responsive width */
+  max-width: 700px; /* Maximum width for larger screens */
+  position: relative;
+  left: 0; /* Center alignment on small screens */
+  display: block; /* Make image block to center properly */
+  margin: 0 auto; /* Center image horizontally */
+}
+
+/* About us history text */
+.history-txts {
+  width: 100%;
+  color: var(--white); /* text color */
+  padding: 20px; /* Add some padding for mobile */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text on smaller screens */
+}
+
+/* About us history text */
+.history-txts h1 {
+  font-weight: 900;
+  font-size: 5rem; /* Reduce size for smaller screens */
+  text-align: center; /* Center text */
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 768px) {
+  .history-txts {
+    padding-left: 300px; /* Keep original padding for larger screens */
+    padding-right: 50px;
+    align-items: flex-start; /* Align text to start on larger screens */
+  }
+  
+  .shelter-img {
+    left: 150px; /* Original left positioning for larger screens */
+  }
+
+  .history-txts h1 {
+    font-size: 7rem; /* Larger font size for larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .history-txts h2 {
+    font-size: 2rem; /* Responsive size for h2 */
+  }
+
+  .history-txts p {
+    font-size: 1rem; /* Responsive size for paragraph text */
+  }
+}
+
+
+@media (max-width: 767px) {
+  .history-txts h2 {
+    font-size: 2rem; /* Responsive size for h2 */
+  }
+
+  .history-txts p {
+    font-size: 1rem; /* Responsive size for paragraph text */
+  }
+}
+
+
+/* Section 2 Mission Content */
+.stat-box {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 20px;
+  border-radius: 5px;
+}
+.stat-box h3 {
+  margin: 0;
+  font-size: 2rem;
+}
+.stat-label {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+/* Mission text */
+.mission-section {
+  text-align: center;
+  padding: 30px;
+  background-color: var(--gray); /* Light background for contrast */
+  border-radius: 10px;
+}
+
+/* Link contact us */
+.metric-box {
+  padding: 10px;
+  border-radius: 30px;
+  background-color: var(--green);
+  transition: transform 0.3s ease;
+}
+.metric-box:hover {
+  background-color: var(--dark-green);
+  color: var(--white);
+}
+.metric-link {
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: none;
+}
+/* Content name (Adopt a pet )*/
+.metric-label {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+/* Section 3 Goals content */
+.animals-shelter-img {
+  max-width: 100%; /* Ensure the image scales down on smaller screens */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.goals {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically on smaller screens */
+  align-items: center; /* Center items horizontally */
+  text-align: center; /* Center text for better readability */
+  background-color: var(--green); /* Set your desired background color here */
+  padding: 20px; /* Optional padding for better spacing */
+}
+
+.goals h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.goals p {
+  font-size: 1.1rem;
+  color: var(--white);
+  line-height: 1.5; /* Improve readability */
+}
+
+.goals-txts {
+  width: 100%;
+  padding: 20px; /* Use padding to avoid crowding */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .goals {
+    flex-direction: row; /* Switch to row layout on larger screens */
+    justify-content: space-between; /* Space out items */
+  }
+
+  .goals-txts {
+    padding-left: 100px;
+    padding-right: 50px;
+    flex: 1; /* Allow text section to grow */
+  }
+
+  .animals-shelter-img {
+    width: 700px; /* Fixed width for larger screens */
+    height: 500px; /* Fixed height for larger screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .goals-txts {
+    padding: 0; /* Remove padding on small screens */
+  }
+}
+
+
+/* Section 4 Our Teams */
+.team-section {
+  text-align: center;
+  padding: 50px 0;
+}
+/* Text Our Team */
+.team-section h1 {
+  font-weight: bold;
+  margin-bottom: 40px;
+  font-size: 70px;
+}
+.team-member {
+  margin-bottom: 30px;
+}
+.team-member img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+.team-member h5 {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.team-description {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: var(--black);
+}
+
+/* Sorry boss miko now kolang nasabi */

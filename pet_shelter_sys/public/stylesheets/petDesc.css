@@ -1,0 +1,216 @@
+/* Color Palette */
+:root {
+    --green: #20A98C;
+    --dirty-white: #F1F1F1;
+    --black: #2E2E2E;
+    --white: #FFFFFF;
+    --dark-green: #18856d;
+    --brown: #8B4513;
+}
+
+/* Global styling */
+* {    
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    background-color: var(--dirty-white);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
+/* Main layout styling */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 80px auto; /* Adjusts top margin to accommodate nav */
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 800px;
+    width: 90%;
+    margin-top: 80px; /* Adjusted to avoid overlap */
+    margin-bottom: 80px; /* To avoid overlap with footer */
+}
+
+hr {
+    height: 3px;
+    background-color: var(--green);
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1px;
+}
+
+/* Styling for the first column */
+.column1 {
+    flex: 1;
+    margin-right: 20px;
+    padding-left: 20px;
+}
+
+.row1_1 h1 {
+    font-size: 24px;
+    color: var(--black);
+    text-align: left;
+}
+
+.name {
+    font-weight: bold;
+    color: var(--dark-green);
+}
+
+/* Container 1 styling */
+.container1 {
+    background-color: var(--white);
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--black);
+}
+
+/* Info section */
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.info-group {
+    width: 45%;
+}
+
+.info-group p {
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+strong {
+    color: var(--black);
+}
+
+/* Container 2 styling */
+.row1_2 .container2 {
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--black);
+    width: 400px;
+    max-width: 400px;
+}
+
+/* Description Section */
+.container2 p {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0;
+    line-height: 1.6;
+    font-weight: 500;
+    text-align: center;
+    color: var(--black);
+}
+
+/* Button styling */
+.row1_3 .container3 {
+    display: flex;
+    justify-content: center;
+}
+
+.row1_3 .container3 button {
+    padding: 8px 30px;
+    background-color: var(--green);
+    border: none;
+    color: var(--white);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+
+.row1_3 .container3 button:last-child {
+    margin-right: 0;
+}
+
+.row1_3 .container3 button:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+}
+
+/* Styling for the second column */
+.column2 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* Image container styling */
+.image_container {
+    width: 400px;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dirty-white);
+    padding: 0;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Ensure the image fits the container */
+.image_container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+/* Responsive styles for small screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 15px;
+        width: 100%;
+        margin-top: 80px; /* Matches height of nav */
+        margin-bottom: 80px; /* Matches height of footer */
+    }
+    
+    .column1, .column2 {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .column2 {
+        order: -1;
+        margin-bottom: 20px;
+    }
+
+    .info-group {
+        width: 100%;
+    }
+
+    .row1_3 .container3 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .row1_3 .container3 button {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .image_container {
+        width: 200px;
+        height: 300px;
+    }
+}

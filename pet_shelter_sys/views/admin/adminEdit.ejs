@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminEncodeCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminEditCss.css">
+    <title>Admin - Edit</title>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+    <main>
+        <h1 style="margin-left: 35%; color: #20A98C;">Modify Pet's Record</h1>
+        <form action="" method="">
+
+        <div class="mainContainer">
+            
+            <div class="FormContainer_1">
+            
+
+                <div class="row">
+                    <div class="input-container">
+                        <input type="text" id="name" placeholder=" " required value="Buddy">
+                        <label class="labels" for="name">Name:</label>
+                        <div class="underline"></div>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="breed" name="breed"  placeholder=" " required value="Aspin">
+                        <label class="labels" for="breed">Breed:</label>
+                        <div class="underline"></div>
+                    </div>    
+                </div>
+            
+                <div class="row">
+                    <div class="dropdownContainer">
+                        <label class="labelDropDate" for="species">Species:</label>
+                            <select style="color:#FFFFFF" name="species" id="species">
+                                 <option value="dog"selected>Dog</option>
+                                 <option value="cat">Cat</option>
+                                 <option value="other" >Others</option>
+                            </select>
+                    </div>    
+               
+                    <div class="input-container">
+                        <input type="text" id="age" name="age"  placeholder=" " required value="adult">
+                        <label class="labels" for="age">Age:</label>
+                        <div class="underline"></div>
+                    </div>    
+                
+                </div>
+
+                <div class="row">
+                    <div class="radioButtonContainer">
+                        <legend class="legendRad">Sex:</legend>
+                                <label for="male">Male</label>
+                                <input type="radio" required="required" name="sex" id="male" value="male" required checked>
+                                <br>
+                               <label for="female">Female</label>
+                               <input type="radio" required="required" name="sex" id="female" value="female" required >
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="characteristics" placeholder=" " required value="Playful">
+                        <label class="labels" for="characteristics">Characteristics:</label>
+                        <div class="underline"></div>
+                    </div>    
+                </div>
+
+            
+                <div class="row">
+                    <div class="dropdownContainer">
+                      <label class="labelDropDate" for="dropdown2">Health Status:</label>
+                          <select style="color:#FFFFFF" name="healthstatus" id="dropdown2">
+                             <option value="" selected>Healthy</option>
+                             <option value="">Minor Injured</option>
+                             <option value="">Major Injured</option>
+                          </select>
+                    </div>      
+                    <div class="input-container">
+                        <input type="text" name="specialneeds" placeholder=" " required value="None">
+                        <label class="labels" for="specialneeds">Special Needs:</label>
+                        <div class="underline"></div>
+                    </div>   
+                </div>        
+
+                <div class="row">
+                    <div class="dateContainer">
+                     <label class="labelDropDate" for="date1">Arrival Date</label>
+                          <input type="date" id="date1" name="arrivaldate" value="2024-03-15">
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="notes" placeholder=" " required value="N/A">
+                        <label class="labels" for="text6">Notes:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dropdownContainer">
+                       <label class="labelDropDate" for="dropdown3">Adoption Status:</label>
+                           <select style="color:#FFFFFF" name="adoptionstatus" id="dropdown3">
+                             <option value="">Adopted</option>
+                             <option value="" selected>Unadopted</option>
+                           </select>
+                    </div>       
+
+                    <div class="input-container">
+                        <input type="text" name="text7" placeholder=" " required value="Malabon City">
+                        <label class="labels" for="locationres">Location Rescued:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dateContainer">
+                        <label class="labelDropDate" for="date2">Adoption Date:</label>
+                              <input type="date" id="date2" name="adoptiondate" value="2000-01-01">
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="description" placeholder=" " required value="A loyal great friend. Loves to cuddle and go for a walk.">
+                        <label class="labels" for="description">Description:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dateContainer">
+                        <label class="labelDropDate" for="date3">BirthDay:</label>
+                             <input type="date" id="date3" name="bday" value="2000-01-02">
+                    </div>
+
+                    <div class="dropdownContainer">
+                          <label class="labelDropDate" for="dropdown4">Size:</label>
+                              <select style="color:#FFFFFF" name="size" id="dropdown4">
+                                  <option value="">Big</option>
+                                  <option value="" selected>Medium</option>
+                                  <option value="">Small</option>
+                              </select>
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <div class="radioButtonContainer">
+                    <legend class="legendRad">Is Desexed?</legend>
+                    <label for="male">Yes</label>
+                    <input type="radio" required="required" name="isdesex" id="male" value="yes" required>
+                    <br>
+                   <label for="female">No</label>
+                   <input type="radio" required="required" name="isdesex" id="female" value="no" required checked>
+                    </div>    
+                <button id="submitButton">Submit</button>    
+                </div>
+                
+        </div>
+
+        <div class="right-side">
+
+            <div class="formProfileImgContainer">
+                <h2>Current Image</h2>
+                <img id="imagePreview" src="/images/petDesc/buddy4.png" alt="Current Image" width="200px">
+                <input type="file" name="profpic" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                <label for="profileImageInput" class="editButton">
+                    Upload Image
+                </label>
+                
+            </div>
+            
+
+            <div class="FormMedicalContainer">
+               <div class="row"> 
+                    <div class="input-container">
+                        <input type="text" name="vactype" placeholder=" " required value="None">
+                        <label class="labels" for="text9">Vaccination Type:</label>
+                        <div class="underline"></div>
+                    </div>  
+                    <div class="input-container">
+                        <input type="text" name="vacdose" placeholder=" " required value="None">
+                        <label class="labels" for="text10">Vaccination Dose:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>   
+
+                <div class="dateContainer">
+                    <label class="labelDropDate" for="date4">Vaccination Date:</label>
+                    <input type="date" id="date4" name="vacdate" value="2004-04-17">
+                </div>    
+            </div>            
+
+        </div>
+        </form>
+        
+    </main>
+        
+    
+</body>
+</html>

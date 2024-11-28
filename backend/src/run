@@ -1,0 +1,7 @@
+#!/bin/bash
+
+ip="$(ip a | grep '/24' | awk '{print $2}' | cut -f 1 -d '/')"
+
+export FLASK_RUN_HOST=$ip
+
+python3 app.py

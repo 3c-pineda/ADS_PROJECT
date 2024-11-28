@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminViewCss.css">
+    <title>About Us - View</title>
+</head>
+
+<body>
+      <!-- NAVIGATION BAR -->
+      <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+    <main>
+        <h1 style="margin-left: 35%; color: #20A98C;">Pet Information Page</h1>
+
+        <div class="animal-details">
+            
+            <h2>Buddy's Profile</h2>
+            <div class="profilePicContainer">
+                <img id="imagePreview" src="/images/petDesc/buddy4.png" alt="Current Image" width="200px">
+            </div>
+            <p><strong>Animal's ID:</strong> 00187</p>
+            <p><strong>Name:</strong> Buddy</p>
+            <p><strong>Species:</strong> Dog</p>
+            <p><strong>Breed:</strong> Aspin</p>
+            <p><strong>Age:</strong> Adult</p>
+            <p><strong>Sex:</strong> Male</p>
+            <p><strong>Characteristics:</strong> Playful</p>
+            <p><strong>Health Status:</strong> Healthy</p>
+            <p><strong>Arrival Date:</strong> 2024-03-15</p>
+            <p><strong>Adoption Status:</strong> Unadopted</p>
+            <p><strong>Special Needs:</strong> N/A</p>
+            <p><strong>Adoption Date:</strong> N/A</p>
+            <p><strong>Birthday:</strong> 2024-01-01</p>
+            <p><strong>Notes:</strong> Likes to play with kids</p>
+            <p><strong>Size:</strong> Medium</p>
+            <p><strong>Location Rescued:</strong> Malabon City</p>
+            <p><strong>Description:</strong> A loyal great friend. Loves to cuddle and go for walk.</p>
+            <p><strong>Is Desexed:</strong> Yes</p>
+
+            <h2>Pet's Medical Record</h2>
+            <p><strong>Vaccination Type:</strong> Rabies</p>
+            <p><strong>Vaccination Date:</strong> 2024-10-14</p>
+            <p><strong>Vaccination Dose:</strong> 1</p>
+            <div class="buttonContainer">
+                <a href="http://localhost:3000/admin/adminTable" class="backButton">Back</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

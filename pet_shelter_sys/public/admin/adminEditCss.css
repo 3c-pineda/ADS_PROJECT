@@ -1,0 +1,38 @@
+.editButton {
+    background-color: #20A98C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    margin-top: 10px;
+}
+.editButton:hover {
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    gap:10px;
+    margin-top:20px;
+}
+.backButton{
+padding: 10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius: 5px;
+    cursor:pointer;
+    font-family: Arial;
+    background-color: #20A98C;
+    color:white;
+    text-decoration: none;
+}
+.backButton:hover{
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}

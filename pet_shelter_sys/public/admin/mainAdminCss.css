@@ -1,0 +1,140 @@
+@font-face{
+    font-family:'Verlag';
+    src:url('Verlag Black.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body{
+    margin:0;
+    padding:0;
+    width:100%;
+  }
+  
+   body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              color: #1d1d1d; /* Dark gray text */
+  
+  
+          }
+  
+          .container {
+              display: flex;
+          }
+  
+          nav {
+              width: 200px;
+              background-color: #20A98C;
+  
+              color: #FFFFFF;
+              padding-top: 20px;
+              height: auto;
+              transition: 0.4s;
+  
+          }
+  
+          nav ul {
+              list-style-type: none;
+              padding: 0;
+          }
+  
+          nav ul li {
+              padding: 15px;
+              text-align: center;
+          }
+  
+          nav ul li a {
+              color: #FFFFFF;
+              text-decoration: none;
+              display: block;
+          }
+  
+          nav ul li a:hover {
+              background-color: #B3D2B2;
+          }
+
+          nav ul li a.active {
+            border-bottom: 2px solid var(--dark-green); /* Change border color for active state */
+            color: var(--white); /* Optional: change color for the active link */
+            font-weight: bold; /* Optional: make the active link bold */
+            transition: border-bottom 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+          
+          main {
+            width: 100%; /* Full width for main content */
+            padding: 20px;
+            padding-bottom: 60px;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+        }
+        header {
+            width: 100%; 
+            background-color:#20A98C;
+            padding: 20px 50px 20px 50px;
+            border-bottom: 3px solid #219c82;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        
+        header img {
+            margin-right: 10px;
+        }
+        
+        header h1 {
+            font-family: Arial;
+            color: #FFFFFF;
+            margin: 0;
+            font-weight: bold;
+            
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+        
+
+      #minimizeLanding, #restoreLanding,
+      #minimizeEncode,#restoreEncode,
+      #minimizeTable, #restoreTable,
+      #minimizeView, #restoreView,
+      #minimizeDelete, #restoreDelete {
+        background-color: #20A98C;
+        font-family: Arial;
+        color: #FFFFFF; 
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background 0.4s ease-in-out, box-shadow 0.4s ease-in-out; 
+      }
+      
+      #minimizeLanding:hover,#restoreLanding:hover,
+      #minimizeEncode:hover,#restoreEncode:hover, 
+      #minimizeTable:hover, #restoreTable:hover,
+      #minimizeView:hover, #restoreView:hover,
+      #minimizeDelete:hover, #restoreDelete:hover  {
+        background: linear-gradient(to right, #a5d6a7, #81c784); 
+        box-shadow: 0 0 10px rgba(251, 192, 45, 0.5); 
+      }
+      
+      #minimizeLanding,
+      #minimizeEncode,
+      #minimizeTable,
+      #minimizeView,
+      #minimizeDelete
+      {
+        display:block;
+        width: 25%;
+    }
+    #restoreLanding,
+    #restoreEncode,
+    #restoreTable,
+    #restoreView,
+    #restoreDelete
+    {
+        display: none;
+        width: 25px;
+    }

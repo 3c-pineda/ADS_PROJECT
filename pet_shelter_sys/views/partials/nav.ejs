@@ -1,0 +1,39 @@
+<link rel='stylesheet' href='stylesheets/navfoot.css' />
+
+<nav class="navigation">
+    <div class="mobile-view">
+        <a href="/" class="logo">Pet-Friend</a>
+        <div class="burger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <div class="menu-items">
+        <a href="/">HOME</a>        
+        <a href="/contactUs">CONTACT US</a>
+        <a href="/aboutUs">ABOUT US</a>
+        <a href="/adoptGrid" class="special-btn-hack">ADOPT</a> <!-- For mobile view -->
+    </div>
+    <a href="/adoptGrid" class="special-btn">ADOPT</a> <!-- For desktop view -->
+</nav>
+
+<script src="javascripts/nav.js"></script>
+
+<script>
+    // JavaScript to set the active link based on the current URL
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the current path (pathname) of the URL
+        const currentPath = window.location.pathname;
+        
+        // Select all menu links
+        const menuLinks = document.querySelectorAll(".menu-items a, .special-btn");
+        
+        // Loop through each link to add 'active' class to the matching URL
+        menuLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPath) {
+                link.classList.add("active");
+            }
+        });
+    });
+</script>

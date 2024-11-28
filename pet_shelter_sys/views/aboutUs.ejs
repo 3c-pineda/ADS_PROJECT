@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel='stylesheet' href='stylesheets/aboutUs.css' />
+    <title><%= title %></title>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <%- include('partials/nav.ejs', { activePage: 'home' }); %>
+    
+    <!-- MAIN CONTENT -->
+    <!-- Section 1 History -->
+    <main>
+        <div class="hero1">
+            <img src="images/about/cat-dog.png" alt="illustration" class="shelter-img">
+            <div class="history-txts">
+              <h1>ABOUT US</h1>
+              <h2 style="color: #2e2e2e;">When Started</h2>
+              <p>Animal shelters were first established on <strong>April 3, 1869,</strong> to provide care and protection for homeless 
+                animals, offering them a safe space and a chance for adoption.</p>
+              <h2 style="color: #2e2e2e;">Shelter History</h2>
+              <p>The first animal shelter at CMU, founded by IT students in 1869, aimed to rescue stray and abused 
+                animals. It now offers adoptions, medical care, and spay/neuter programs, promoting humane treatment.</p>
+            </div>
+        </div>
+
+    <!-- Section 2 Mission -->
+    <div class="container text-center mt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div class="col">
+                <p class="stat-label">Rescued Animals</p>
+                <div class="stat-box">
+                    <h3>236</h3>
+                </div>
+            </div>
+            <div class="col">
+                <p class="stat-label">Adopted</p>
+                <div class="stat-box">
+                    <h3>1202</h3>
+                </div>
+            </div>
+            <div class="col">
+                <p class="stat-label">Raised Funds</p>
+                <div class="stat-box">
+                    <h3>103</h3>
+                </div>
+            </div>
+            <div class="col">
+                <p class="stat-label">Volunteers</p>
+                <div class="stat-box">
+                    <h3>1230</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Content -->
+    <div class="container">
+        <div class="mission-section mt-5">
+            <h1>Our Mission</h1>
+            <p>Our mission is to provide a safe haven for stray, abandoned, and abused animals, offering them shelter, medical 
+                care, and compassion. We are dedicated to rescuing animals in need, nursing them back to health, and finding 
+                them loving, permanent homes through adoption. Additionally, we aim to reduce animal overpopulation through 
+                spay/neuter programs and educate the community on responsible pet ownership, while advocating for the humane 
+                treatment of all animals.</p>
+        </div>
+    </div>
+
+    <!-- Link Contact Us -->
+    <div class="container text-center mt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 justify-content-center">
+            <div class="col">
+                <p class="metric-label">Adopt a pet</p>
+                <div class="metric-box">
+                    <a href="#" class="metric-link">Contact us</a>
+                </div>
+            </div>
+            <div class="col">
+                <p class="metric-label">Make a Donor</p>
+                <div class="metric-box">
+                    <a href="#" class="metric-link">Contact us</a>
+                </div>
+            </div>
+            <div class="col">
+                <p class="metric-label">License Pet</p>
+                <div class="metric-box">
+                    <a href="#" class="metric-link">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3 Our Goals -->
+    <div class="goals mt-5">
+        <div class="goals-txts">
+            <h2><span class="paw-icon">🐾</span> Why We Adopt</h2>
+            <p>Adopting a pet saves lives, provides companionship, offers health benefits, is cost-effective, fights 
+            cruelty, offers diverse choices, and fosters community, making it a rewarding experience for both animals 
+            and their new families.</p>
+         <h2><span class="paw-icon">🐾</span> Our Goals</h2>
+            <p>Our goals are to rescue and rehabilitate animals, facilitate adoptions, educate the community on animal 
+            welfare, advocate for humane treatment, implement sustainable practices, build a strong volunteer network, 
+            and develop partnerships to enhance our impact.</p>
+        </div>
+        <img src="images/about/animals-shelter.png" alt="illustration" class="animals-shelter-img">
+    </div>
+
+    <!-- Section 4 Our teams -->
+    <div class="container team-section">
+        <h1>Our Team</h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6 team-member">
+                <img src="images/about/avatar1.png" alt="Team Member 1">
+                <h5>Masallo, Jefferson Cunanan</h5>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 team-member">
+                <img src="images/about/avatar2.png" alt="Team Member 2">
+                <h5>Isorena, Cristhine Mae Velarde</h5>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 team-member">
+                <img src="images/about/avatar3.png" alt="Team Member 3">
+                <h5>Palacio, Andrei Daniel</h5>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 team-member">
+                <img src="images/about/avatar4.png" alt="Team Member 4">
+                <h5>Pineda, Miko</h5>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6 team-member">
+                <img src="images/about/avatar5.png" alt="Team Member 5">
+                <h5>Rubin, RavenKlein</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p class="team-description">
+                    Our team is a dedicated group of compassionate advocates, skilled caregivers, and passionate volunteers committed to rescuing animals, providing exceptional care, and promoting animal welfare in our community.
+                </p>
+            </div>
+        </div>
+    </div>
+    </main>
+
+     <!-- FOOTER -->
+    <%- include('partials/foot.ejs'); %>
+</body>
+</html>

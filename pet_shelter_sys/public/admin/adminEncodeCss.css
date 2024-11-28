@@ -1,0 +1,251 @@
+
+.mainContainer{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height:100vh;
+    padding:20px;
+}
+.FormContainer_1{
+    flex:1;
+    border: 3px solid #F1F1F1;
+    padding:20px;
+    margin-right:20px;
+    border-radius: 15px;
+    display:flex;
+    flex-direction:column;
+}
+
+.rightside{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.formProfileImgContainer {
+    border: 3px solid #F1F1F1;
+    padding: 20px;
+    width: 230px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.FormMedicalContainer{
+    border: 3px solid #F1F1F1;
+    padding:35px;
+    width:200px;
+    height:150px;
+    border-radius: 15px;
+    
+}
+
+.formProfileImgContainer{
+    align-self:flex-start;
+    margin-bottom: 10%;
+}
+.FormMedicalContainer{
+    align-self:flex-end;
+    height: 100%;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
+    margin-right:100px;
+    width: 100%;
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: Arial;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+input[type="text"]:focus,
+input:not(:placeholder-shown) {
+    background-color: #20A98C;  /* Keep background color on focus and when value is entered */
+    border-color: #fff;
+}
+
+.labels {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #20A98C;
+    font-size: 16px;
+    transition: 0.4s ease;
+    pointer-events: none;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    /*color: #20A98C;*/
+}
+
+.underline {
+    position: absolute;
+    bottom: -5%;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #368b79;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+input:focus ~ .underline {
+    transform: scaleX(1);
+}
+
+.row{
+    display: flex;
+}
+.dropdownContainer{
+    margin-right:100px;
+    width: 100%;
+}
+.radioButtonContainer{
+    margin-right:100px;
+    width: 100%;
+}
+.dateContainer{
+    margin-right:100px;
+    width: 100%;
+}
+label{
+    color:black;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #F1F1F1;
+    border-radius: 5px;
+    background-color: #20A98C;
+    font-size: 16px;
+    color: #2E2E2E;
+    font-family: Arial;
+    transition: border-color 0.4s ease, background-color 0.4s ease;
+}
+
+select:focus {
+    border-color: #F1F1F1;;
+    background-color: #20A98C;
+}
+
+/* Radio button styling */
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+.radioButtonContainer label {
+    font-size: 16px;
+    color: #20A98C;
+}
+
+/* Date input styling */
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #F1F1F1;
+    border-radius: 5px;
+    background-color: #20A98C;
+    font-size: 16px;
+    color: #2E2E2E;
+    font-family: Arial;
+    transition: border-color 0.4s ease, background-color 0.4s ease;
+}
+
+input[type="date"]:focus {
+    border-color: #F1F1F1;
+    background-color: #20A98C;
+}
+
+/* Button styling */
+button {
+    background-color: #20A98C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+button:hover {
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+input[type="date"]{
+    width: 90%; 
+    padding: 10px;
+    border: 2px solid #F1F1F1;
+    border-radius: 5px;
+    background-color: #20A98C;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-family: Arial;
+    transition: border-color 0.4s ease, background-color 0.4s ease;
+}
+
+.FormMedicalContainer input:focus + label,
+.FormMedicalContainer input:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 12px;
+    color: #20A98C;
+}
+
+.uploadButton, #changeImageButton,#submitButton {
+    background-color: #20A98C;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    height: 50%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    margin-top: 10px;
+}
+
+.uploadButton:hover, #changeImageButton:hover, #submitButton:hover {
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#profileImagePreview {
+    width: 100%;
+    height: 150px; /* Adjusted height to fit image properly */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+#changeImageButton {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+    align-self: center;
+}
+.legendRad, .labelDropDate{
+    color: #20A98C;
+}

@@ -1,0 +1,313 @@
+/* Color Palette */
+:root {
+    --green: #20A98C;        /* Primary Green */
+    --dirty-white: #F1F1F1;  /* Dirty White */
+    --black: #2E2E2E;        /* Dark Gray */
+    --white: #FFFFFF;        /* White */
+    --dark-green: #18856d; /*Dark Green*/
+    --brown: #8B4513; /* Saddle Brown */
+}
+
+/* Hover Color 
+#d9d9d9 - Darkened Green
+#d9d9d9 - Darkened Dirty White
+*/
+
+/* General Styles */
+body {
+    background-color: var(--white);
+    font-family: Arial, sans-serif;
+    color: var(--black);
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Search and Filter Buttons */
+.sf_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.search_filt {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+	margin-right: 10px;
+}
+
+.search_filt input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--black);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    font-size: 16px;
+    background-color: var(--white);
+    color: var(--black);
+}
+
+.search_filt button {
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    color: var(--white);
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search_filt button:hover {
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+}
+
+
+/*Search Icon*/
+.search_filt button .fa-search {
+    color: var(--black);
+}
+
+.search_filt button .fa-search:hover {
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+}
+/* Dropdown Button */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px; /* Merged unique margin */
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: var(--white);
+    border: 1px solid var(--black);
+    color: var(--black);
+    border-radius: 4px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Enables flexible layout */
+    width: 160px; /* Adjusted width of the button */
+    margin-top: 15px;
+}
+
+.filter-btn:hover {
+    background-color: #2E2E2E; 
+    color: #F1F1F1;
+}
+
+/*Dropdown Icon Style */
+.filter-btn .fa-sort-desc {
+    margin-left: 10px; /* Add spacing between text and icon */
+    font-size: 14px;
+}
+
+/* Dropdown Content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    min-width: 160px; /* Matches the button width */
+    max-width: 300px; /* Allows expansion */
+    border-radius: 4px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: var(--black);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid var(--dirty-white);
+}
+
+.dropdown-content a:hover {
+    background-color: #d9d9d9; /* Darkened dirty-white */
+}
+
+/* Show the dropdown on hover or click */
+.dropdown:hover .dropdown-content,
+.dropdown.active .dropdown-content {
+    display: block;
+    width: 100%;
+}
+
+
+
+/* Grid Layout */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Pet Card Styles */
+.pet {
+    background-color: var(--white);
+    border: 1px solid var(--dirty-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pet:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.pet_image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dirty-white);
+}
+
+.pet_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet_desc {
+    padding: 15px;
+    text-align: center;
+}
+
+.pet_desc h2 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--black);
+}
+
+.pet_desc hr {
+    height: 3px;
+    background-color: #20A98C;
+    border: none;
+    border-radius: 30px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1px;
+    
+}
+
+.pet_desc p {
+    font-size: 1rem;
+    color: #555; /* Slightly lighter than black for readability */
+    margin-bottom: 15px;
+    height: 100px;
+}
+
+.pet_desc button {
+    padding: 8px 30px;
+    background-color: var(--green);
+    border: none;
+    color: var(--white);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pet_desc button:hover {
+    background-color: #18856d;
+    color: #FFFFFF;
+}
+
+
+
+/* Bottom Buttons */
+.nb_buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.nb_buttons button {
+    padding: 10px 25px;
+    background-color: var(--White);
+    border: none;
+    color: var(--black);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+	border: 2px solid #2E2E2E;
+}
+
+.nb_buttons button:hover {
+    background-color: #2E2E2E;
+    color: #FFFFFF;
+}
+
+/* Responsive Grid */
+@media (min-width: 576px) {
+    .grid .row1,
+    .grid .row2,
+    .grid .row3,
+    .grid .row4 {
+        display: flex;
+        gap: 50px;
+    }
+
+    .grid .column1,
+    .grid .column2,
+    .grid .column3,
+    .grid .column4 {
+        flex: 1;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .sf_buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .nb_buttons {
+        flex-direction: row; /* Ensure buttons are in a row */
+        flex-wrap: wrap; /* Allow buttons to wrap if necessary */
+        justify-content: space-between; /* Align buttons with space between */
+    }
+
+    .nb_buttons button {
+        flex: 1; /* Allow buttons to grow equally */
+        margin: 5px; /* Add margin around buttons for spacing */
+        max-width: 48%; /* Adjust max width to fit two buttons in a row */
+    }
+
+    /* For the grid, show two columns per row */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px; /* Maintain gap between the grid items */
+        
+    }
+
+    .pet {
+        margin-bottom: 30px;
+    }
+}
+
+

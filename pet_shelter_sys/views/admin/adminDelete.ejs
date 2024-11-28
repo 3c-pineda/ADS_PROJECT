@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminDeleteCss.css">
+    <title>Admin - Delete Page</title>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+    <main>
+        <h1 style="margin-left: 38%; color: #20A98C;">Delete Pet Record</h1>
+       
+        <div class="deleteContainer">
+            <h2>Delete Confirmation</h2>
+            <p style="text-align: center;">Do you wish to permanently delete Buddy's information from the Database?</p>
+            
+            <form action="delete_record.php" method="post">
+				<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                <div class="buttonsContainer">
+			    	<input class="buttonDelete" type="submit" value="Yes, Delete">
+                    <a href="http://localhost:3000/admin/adminTable" class="buttonCancel">Cancel</a>
+                </div>
+			</form>          
+        </div>
+    </main>
+
+
+</body>
+</html>

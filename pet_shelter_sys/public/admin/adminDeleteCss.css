@@ -1,0 +1,49 @@
+.deleteContainer {
+    width: 25%;
+    margin: auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.deleteContainer h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.deleteContainer p {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+}
+.buttonsContainer{
+    display: flex;
+    justify-content: space-between;
+    gap:10px;
+    margin-top:20px;
+}
+.buttonDelete, .buttonCancel{
+    padding: 10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius: 5px;
+    cursor:pointer;
+    font-family: Arial;
+}
+.buttonDelete{
+    background-color: #20A98C;
+    color:white;
+}
+.buttonCancel{
+    display:inline-block;
+    background-color: #20A98C;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+.buttonCancel:hover, .buttonDelete:hover{
+    background-color: #368b79;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminEncodeCss.css">
+    <title>Admin - Encode Page</title>
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+    <main>
+        <h1 style="margin-left: 40%; color: #20A98C;">INPUT DATA</h1>
+        <form action="" method="">
+
+        <div class="mainContainer">
+            
+            <div class="FormContainer_1">
+            
+
+                <div class="row">
+                    <div class="input-container">
+                        <input type="text" id="name" placeholder=" " required>
+                        <label class="labels" for="name">Name:</label>
+                        <div class="underline"></div>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" id="breed" name="breed" placeholder=" " required>
+                        <label class="labels" for="breed">Breed:</label>
+                        <div class="underline"></div>
+                    </div>    
+                </div>
+            
+                <div class="row">
+                    <div class="dropdownContainer">
+                        <label class="labelDropDate" for="species">Species:</label>
+                            <select style="color:#FFFFFF" name="species" id="species">
+                                 <option value="dog">Dog</option>
+                                 <option value="cat">Cat</option>
+                                 <option value="other">Others</option>
+                            </select>
+                    </div>    
+               
+                    <div class="input-container">
+                        <input type="text" id="age" name="age" placeholder=" " required>
+                        <label class="labels" for="age">Age:</label>
+                        <div class="underline"></div>
+                    </div>    
+                
+                </div>
+
+                <div class="row">
+                    <div class="radioButtonContainer">
+                        <legend class="legendRad">Sex:</legend>
+                                <label for="male">Male</label>
+                                <input type="radio" required="required" name="sex" id="male" value="male" required>
+                                <br>
+                               <label for="female">Female</label>
+                               <input type="radio" required="required" name="sex" id="female" value="female" required>
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="characteristics" placeholder=" " required>
+                        <label class="labels" for="characteristics">Characteristics:</label>
+                        <div class="underline"></div>
+                    </div>    
+                </div>
+
+            
+                <div class="row">
+                    <div class="dropdownContainer">
+                      <label class="labelDropDate" for="dropdown2">Health Status:</label>
+                          <select style="color:#FFFFFF" name="healthstatus" id="dropdown2">
+                             <option value="">Healthy</option>
+                             <option value="">Minor Injured</option>
+                             <option value="">Major Injured</option>
+                          </select>
+                    </div>      
+                    <div class="input-container">
+                        <input type="text" name="specialneeds" placeholder=" " required>
+                        <label class="labels" for="specialneeds">Special Needs:</label>
+                        <div class="underline"></div>
+                    </div>   
+                </div>        
+
+                <div class="row">
+                    <div class="dateContainer">
+                     <label class="labelDropDate" for="date1">Arrival Date</label>
+                          <input type="date" id="date1" name="arrivaldate">
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="notes" placeholder=" " required>
+                        <label class="labels" for="text6">Notes:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dropdownContainer">
+                       <label class="labelDropDate" for="dropdown3">Adoption Status:</label>
+                           <select style="color:#FFFFFF" name="adoptionstatus" id="dropdown3">
+                             <option value="">Adopted</option>
+                             <option value="">Unadopted</option>
+                           </select>
+                    </div>       
+
+                    <div class="input-container">
+                        <input type="text" name="text7" placeholder=" " required>
+                        <label class="labels" for="locationres">Location Rescued:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dateContainer">
+                        <label class="labelDropDate" for="date2">Adoption Date:</label>
+                              <input type="date" id="date2" name="adoptiondate">
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" name="description" placeholder=" " required>
+                        <label class="labels" for="description">Description:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="dateContainer">
+                        <label class="labelDropDate" for="date3">BirthDay:</label>
+                             <input type="date" id="date3" name="bday">
+                    </div>
+
+                    <div class="dropdownContainer">
+                          <label class="labelDropDate" for="dropdown4">Size:</label>
+                              <select style="color:#FFFFFF" name="size" id="dropdown4">
+                                  <option value="">Big</option>
+                                  <option value="">Medium</option>
+                                  <option value="">Small</option>
+                              </select>
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <div class="radioButtonContainer">
+                    <legend class="legendRad">Is Desexed?</legend>
+                    <label for="male">Yes</label>
+                    <input type="radio" required="required" name="isdesex" id="male" value="male" required>
+                    <br>
+                   <label for="female">No</label>
+                   <input type="radio" required="required" name="isdesex" id="female" value="female" required>
+                    </div>    
+                <button id="submitButton">Submit</button>    
+                </div>
+                
+        </div>
+
+        <div class="right-side">
+
+            <div class="formProfileImgContainer">
+                <input type="file" name="profpic" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewImage(event)">
+                <img id="profileImagePreview" src="" alt="Profile Preview" style="display:none; width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                <label for="profileImageInput" class="uploadButton">
+                    Upload Image
+                </label>
+                <button id="changeImageButton" style="display:none;" onclick="triggerImageChange()">Change Image</button>
+            </div>
+            
+
+            <div class="FormMedicalContainer">
+               <div class="row"> 
+                    <div class="input-container">
+                        <input type="text" name="vactype" placeholder=" " required>
+                        <label class="labels" for="text9">Vaccination Type:</label>
+                        <div class="underline"></div>
+                    </div>  
+                    <div class="input-container">
+                        <input type="text" name="vacdose" placeholder=" " required>
+                        <label class="labels" for="text10">Vaccination Dose:</label>
+                        <div class="underline"></div>
+                    </div>  
+                </div>   
+
+                <div class="dateContainer">
+                    <label class="labelDropDate" for="date4">Vaccination Date:</label>
+                    <input type="date" id="date4" name="vacdate">
+                </div>    
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+
+
+
+    </main>
+    </div>
+    <script>
+        function previewImage(event) {
+            const reader = new FileReader();
+            const imagePreview = document.getElementById('profileImagePreview');
+            const uploadButton = document.querySelector('.uploadButton');
+            const changeImageButton = document.getElementById('changeImageButton');
+            
+            reader.onload = function(){
+                imagePreview.src = reader.result;
+                imagePreview.style.display = 'block';  // Show the image
+                changeImageButton.style.display = 'block';  // Show the "Change Image" button
+                uploadButton.style.display = 'none'; // Hide the "Upload Image" button
+            };
+        
+            // If a file is selected, read it
+            if (event.target.files[0]) {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+        
+        function triggerImageChange() {
+            document.getElementById('profileImageInput').click();
+        }
+    </script>    
+    <script>
+        const btn = document.getElementById('minimizeEncode');
+        let ifminimizeclick = true;
+        btn.addEventListener('click', function() {
+          if (ifminimizeclick) {
+              document.getElementById("navEncode").style.width="0px";
+              document.getElementById("restoreEncode").style.display="block";
+              document.getElementById("minimizeEncode").style.display="none";
+          }
+        });
+    
+        const btn1 = document.getElementById('restoreEncode');
+        let ifrestoreclick = true;
+        btn1.addEventListener('click', function() {
+          if (ifrestoreclick) {
+              document.getElementById("navEncode").style.width="200px";
+              document.getElementById("restoreEncode").style.display="none";
+              document.getElementById("minimizeEncode").style.display="block";
+          }	  
+        });
+    </script>
+    
+</body>
+</html>

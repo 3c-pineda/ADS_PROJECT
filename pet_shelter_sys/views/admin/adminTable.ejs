@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminTableCss.css">
+    <title>Admin - View Database</title>
+</head>
+
+<body>
+     <!-- NAVIGATION BAR -->
+     <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+      
+        <button id="restoreTable"><h2>></h2></button>
+        <main>
+            
+
+            <!-- First Table with 19 headers -->
+            <div class="titleContainer">
+            <h1> SHELTER DATABASE</h1>
+            </div>
+            <div class="table-container">
+               
+                <table id="mainTable">
+                    <thead>
+                        <tr>
+                            <th>Animals ID</th>
+                            <th>Name</th>
+                            <th>Species</th>
+                            <th>Breed</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Characteristics</th>
+                            <th>Health Status</th>
+                            <th>Arrival Date</th>
+                            <th>Adoption Status</th>
+                            <th>Special Needs</th>
+                            <th>Adoption Date</th>
+                            <th>Birthday</th>
+                            <th>Notes</th>
+                            <th>Size</th>
+                            <th>Location Rescued</th>
+                            <th>Description</th>
+                            <th>Is Desexed</th>
+                            <th id="tableAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Example data rows -->
+                        <tr>
+                            <td>00187</td>
+                            <td>Buddy</td>
+                            <td>Dog</td>
+                            <td>Aspin</td>
+                            <td>Adult</td>
+                            <td>Male</td>
+                            <td>Playful</td>
+                            <td>Healthy</td>
+                            <td>2024-03-15</td>
+                            <td>Unadopted</td>
+                            <td>None</td>
+                            <td>N/A</td>
+                            <td>2024-01-01</td>
+                            <td>Likes to play with kids</td>
+                            <td>Medium</td>
+                            <td>Downtown Manila</td>
+                            <td>A loyal great friend. Loves to cuddle and go for walk.</td>
+                            <td>Yes</td>
+                            <td>
+                                <div class="actionButtonContainer">
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>00188</td>
+                            <td>Belle</td>
+                            <td>Dog</td>
+                            <td>Golden Retriever</td>
+                            <td>Elder</td>
+                            <td>Female</td>
+                            <td>Friendly, Energetic</td>
+                            <td>Healthy</td>
+                            <td>2014-03-15</td>
+                            <td>Unadopted</td>
+                            <td>None</td>
+                            <td>N/A</td>
+                            <td>2022-03-15</td>
+                            <td>Likes to play with kids</td>
+                            <td>Medium</td>
+                            <td>Downtown Manila</td>
+                            <td>A cheerful young labrador who loves people</td>
+                            <td>Yes</td>
+                            <td>
+                                <div class="actionButtonContainer">
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>00189</td>
+                            <td>Columbina</td>
+                            <td>Other</td>
+                            <td>Dove</td>
+                            <td>Young</td>
+                            <td>Female</td>
+                            <td>Gentle, Calm</td>
+                            <td>Healthy</td>
+                            <td>2024-06-10</td>
+                            <td>Unadopted</td>
+                            <td>Special diet, Quiet place</td>
+                            <td>N/A</td>
+                            <td>2023-06-10</td>
+                            <td>Prefers to be alone</td>
+                            <td>small</td>
+                            <td>Near Downtown Makati </td>
+                            <td>A gentle dove with pure white feathers; very calm</td>
+                            <td>No</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>00190</td>
+                            <td>Tom</td>
+                            <td>Cat</td>
+                            <td>Domestic Shorthair</td>
+                            <td>Young</td>
+                            <td>Male</td>
+                            <td>Quiet,Affectionate</td>
+                            <td>Minor Injured</td>
+                            <td>2024-07-22</td>
+                            <td>Unadopted</td>
+                            <td>Medication needed for injury</td>
+                            <td>N/A</td>
+                            <td>2019-07-22</td>
+                            <td>Nees calm enviroment</td>
+                            <td>small</td>
+                            <td>Suburb of Navotas</td>
+                            <td>Calm cat that enjoys a warm lap to sit on</td>
+                            <td>No</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                                        
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+                    
+            </div>
+            <div class="navigation-buttons">
+                <button id="prevHeaders"><<</button>
+                <button id="nextHeaders">>></button>
+            </div>
+            <!-- Second Table with 4 headers -->
+            <div class="titleContainer">
+            <h1>SHELTER MEDICAL HISTORY DATABASE </h1>
+            
+            </div>
+            <div class="second-table-container">
+                <table id="secondTable">
+                    <thead>
+                        <tr>
+                            <th>Vaccination Type</th>
+                            <th>Vaccination Date</th>
+                            <th>Vaccination Dose</th>
+                            <th>Profile Picture</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rabies</td>
+                            <td>2003-03-09</td>
+                            <td>2</td>
+                            <td>[link_to_pic.jpg]</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rabies</td>
+                            <td>2024-06-09</td>
+                            <td>1</td>
+                            <td>[link_to_pic.jpg]</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pigeon Fox</td>
+                            <td>2024-07-25</td>
+                            <td>1</td>
+                            <td>[link_to_pic.jpg]</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>FVRCP</td>
+                            <td>2024-09-14</td>
+                            <td>1</td>
+                            <td>[link_to_pic.jpg]</td>
+                            <td>
+                                <button onclick="redirectToViewWithId()" class="actionButtons">View</button>
+                                <button onclick="redirectToEditWithId()" class="actionButtons">Modify</button>
+                                <button onclick="redirectToDeleteWithId(id)" class="actionButtons">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function redirectToViewWithId(id){
+           location.href='http://localhost:3000/admin/adminView';
+        }
+
+        function redirectToEditWithId(id){
+            location.href='http://localhost:3000/admin/adminEdit';
+        }
+
+        function redirectToDeleteWithId(id){
+            location.href='http://localhost:3000/admin/adminDelete'
+        }
+
+        
+        // Navigation for header buttons
+        let currentStartIndex = 0;
+        const headersToShow = 10;
+        const totalHeaders = 19;
+
+        const updateTableHeaders = () => {
+            const headers = document.querySelectorAll('#mainTable thead tr th');
+            const rows = document.querySelectorAll('#mainTable tbody tr');
+            headers.forEach((header, index) => {
+                if (index < currentStartIndex || index >= currentStartIndex + headersToShow) {
+                    header.style.display = 'none';
+                } else {
+                    header.style.display = '';
+                }
+            });
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach((cell, index) => {
+                    if (index < currentStartIndex || index >= currentStartIndex + headersToShow) {
+                        cell.style.display = 'none';
+                    } else {
+                        cell.style.display = '';
+                    }
+                });
+            });
+        };
+
+        document.getElementById('prevHeaders').addEventListener('click', () => {
+            if (currentStartIndex > 0) {
+                currentStartIndex -= headersToShow;
+                updateTableHeaders();
+            }
+        });
+
+        document.getElementById('nextHeaders').addEventListener('click', () => {
+            if (currentStartIndex + headersToShow < totalHeaders) {
+                currentStartIndex += headersToShow;
+                updateTableHeaders();
+            }
+        });
+
+        // Initial update
+        updateTableHeaders();
+    </script>
+</body>
+</html>
+

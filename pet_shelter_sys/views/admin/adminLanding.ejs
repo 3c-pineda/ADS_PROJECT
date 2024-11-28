@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/admin/mainAdminCss.css">
+    <link rel="stylesheet" type="text/css" href="/admin/adminLandingCss.css">
+    <script src="/javascript/chart.js"></script>
+    <title>Admin - Pet-Friend</title>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <%- include('adminPartials/adminNav.ejs', { activePage: 'home' }); %>
+    
+    <main>
+        <h1 style="margin-left: 40%; color: #20A98C;">Welcome Admin!</h1>
+        <div class="chartContainer">
+            <div class="chart">
+                <h1>Species Distribution</h1>
+                <img src="/admin/piechart1.jpg">
+                 <!--<canvas id="myPieChart"></canvas> -->
+            </div>
+            
+            
+            <div class="chart">
+                <h1>Adoption Status</h1>
+                <img src="/admin/piechart2.jpg">
+                <!--<canvas id="myPieChart2"></canvas>-->
+            </div>
+            
+            <div class="chart">
+                <h1>Age Distribution</h1>
+                <img src="/admin/piechart3.jpg">
+                <!--<canvas id="myPieChart3"></canvas>-->
+            </div>
+        </div>
+        <br>
+        <br>
+        <div id="barChartContainer">
+            <h1>Monthly Adoption</h1>
+            <img class="bargraph" src="/admin/bargraph.jpg">
+            <!--<canvas id="myBarChart"></canvas>-->
+        </div>
+        <div class="button2Container">
+            <button id="button2" onclick="location.href='http://localhost:3000/admin/adminTable'">View Database Tables</button>
+        </div>
+        
+
+        
+    </main>
+    </div>
+<script>
+    const pieChartOption= {
+        responsive:true,
+        maintainAspectRatio:false
+    };
+
+    const percentageOfSpecies={
+        labels:['Dogs','Cats','Others'],
+        datasets:[{
+            data:[2,1,2],
+            backgroundColor:['#36A2EB','#FFA726','#66BB6A']        
+        }]
+    }
+
+    const percentageofAdoptionStatus={
+        labels:['Adopted','For Adoption'],
+        datasets:[{
+            data:[1,4],
+            backgroundColor:['#66BB6A','#B0BEC5']
+        }]
+    }
+
+    const percentageofAge={
+        labels:['Young','Adult','Old'],
+        datasets:[{
+            data:[2,3,0],
+            backgroundColor:['#81D4FA','#42A5F5','#B0BEC5']
+        }]
+
+    }
+
+
+    const ctx1=document.getElementById('myPieChart').getContext('2d');
+    new Chart(ctx1, {
+        type:'pie',
+        data:percentageOfSpecies,
+        options:pieChartOption
+    });
+
+    const ctx2=document.getElementById('myPieChart2').getContext('2d');
+    new Chart(ctx2, {
+        type:'pie',
+        data:percentageofAdoptionStatus,
+        options:pieChartOption
+    });
+
+    const ctx3=document.getElementById('myPieChart3').getContext('2d');
+    new Chart(ctx2, {
+        type:'pie',
+        data:percentageofAge,
+        options:pieChartOption
+    });
+
+
+    const barData = {
+      labels: ['January', 'February', 'March', 'April', 
+               'May','June','July','August','September',
+               'October','November','December'],
+      datasets: [{
+        label: 'Monthly Trend',
+        data: [0,0,0,0,
+               0,0,0,0,
+               1,0,0,0
+              ],
+        backgroundColor: ['#4FC3F7','#81D4FA','#AED581','#66BB6A',
+                          '#FFEB3B','#FFCA28','#FFA726','#FF7043',
+                          '#8D6E63','#AB47BC','#78909C','#42A5F5'         
+        ]
+      }]
+      
+    };
+
+    
+    const barOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true
+        },
+        x:{
+            title:{
+                display:true,
+                text:'Month'
+            }
+        }
+      },
+      plugins:{
+        legend:{
+            display:false
+        }
+      }
+    };
+
+    
+    const barCtx = document.getElementById('myBarChart').getContext('2d');
+    new Chart(barCtx, {
+      type: 'bar',
+      data: barData,
+      options: barOptions
+    });
+</script>
+
+
+</body>
+</html>
