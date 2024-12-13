@@ -10,7 +10,7 @@ html, body{
     padding:0;
     width:100%;
   }
-  
+
    body {
               font-family: Arial, sans-serif;
               margin: 0;
@@ -21,6 +21,7 @@ html, body{
   
           .container {
               display: flex;
+              height: auto;
           }
   
           nav {
@@ -91,8 +92,10 @@ html, body{
         }
 
         .logo {
-            font-weight: 900;
+            
             font-size: 1.3rem;
+            font-weight: bold;
+            text-decoration: none;
         }
         
 

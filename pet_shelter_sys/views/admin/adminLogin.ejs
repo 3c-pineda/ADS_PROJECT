@@ -77,7 +77,6 @@
         </p>
       </form>
     </div>
-
     <!-- JavaScript to handle success/error popups and redirection -->
     <script>
       <% if (typeof message !== 'undefined' && message === 'Login successful') { %>
@@ -87,7 +86,8 @@
         alertDiv.classList.add('alert-success');
         alertDiv.textContent = 'Login successful';
         alertDiv.style.display = 'block';
-
+        // Set session storage
+        sessionStorage.setItem('login_status', 'success');
         // Redirect after 2 seconds
         setTimeout(function() {
           window.location.href = '/admin/';

@@ -1,5 +1,5 @@
 <header>
-    <h1 class="logo">Pet-Friend</h1>
+    <a href="/admin" class="logo"><h1 class="logo">Pet-Friend</h1></a>
 
 </header>
 
@@ -9,13 +9,22 @@
             <li><a href="/admin">Home</a></li>
             <li><a href="/admin/adminEncode">Encode Pet</a></li>
             <li><a href="/admin/adminTable">Database</a></li>
+            <li><a href="#"><button onclick="logout()" style="background: none; border: none; color: #fff; font-size: 16px;">Logout</button></a></li>
         </ul>
         <button id="minimizeLanding"><h1><</h1></button>
     </nav>
     <button id="restoreLanding"><h2>></h2></button>
 
 
+   <script>
+    function logout() {
+        // Remove the 'login_status' from sessionStorage
+        sessionStorage.removeItem('login_status');
     
+        // Redirect to the login page
+        window.location.href = '/admin/login';
+    }
+   </script>
     <script>
         const btn = document.getElementById('minimizeLanding');
         let ifminimizeclick = true;

@@ -1,3 +1,7 @@
+main {
+    height: 100vh;
+}
+
 .deleteContainer {
     width: 25%;
     margin: auto;

@@ -50,7 +50,11 @@
                                   <td><%= animal.health_status %></td>
                                   <td>
                                     <div class="actionButtonContainer">
-                                      <button onclick="redirectToViewWithId('<%= animal.id %>')" class="actionButtons">View</button>
+                                      <form action="/admin/adminView" method="POST">
+                                        <input type="hidden" name="animal_id" value='<%= animal.animal_id %>'>
+                                        <input type="hidden" name="method" value="POST">
+                                        <button type="submit" class="actionButtons">View</button>
+                                      </form>
                                       <a href="/admin/adminEdit/<%= animal.animal_id %>" class="actionButtons">Modify</a>
                                       <form action="/admin/adminDelete" method="POST">
                                         <input type="hidden" name="animal_id" value='<%= animal.animal_id %>'>
@@ -103,7 +107,6 @@
                                 <td colspan="5">No medical history found in the database.</td>
                             </tr>
                         <% } %>
-                        
                     </tbody>
                 </table>
             </div>
@@ -111,6 +114,12 @@
         </main>
     </div>
 
+    <!-- Add this at the end of the <body> tag -->
+    <script src="/javascripts/auth.js"></script>
+    <script>
+      // This will run when the page is loaded
+      checkLoginStatusAndRedirect();
+    </script>
     <script>
         function redirectToViewWithId(id) {
   location.href = http://localhost:3000/admin/adminView/${id};

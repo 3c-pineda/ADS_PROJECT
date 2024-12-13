@@ -159,7 +159,7 @@
         </div>
 
         <div class="right-side">
-
+            <p>Note: Image is required to submit the form</p>
             <div class="formProfileImgContainer">
                 <input type="file" name="profpic" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewImage(event)" required>
                 <img id="profileImagePreview" src="" alt="Profile Preview" style="display:none; width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
@@ -193,6 +193,13 @@
     </div>
     </main>
     </div>
+                        
+    <!-- Add this at the end of the <body> tag -->
+    <script src="/javascripts/auth.js"></script>
+    <script>
+      // This will run when the page is loaded
+      checkLoginStatusAndRedirect();
+    </script>
     <script>
         function previewImage(event) {
             const reader = new FileReader();

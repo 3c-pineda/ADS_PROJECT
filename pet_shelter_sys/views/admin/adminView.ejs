@@ -18,7 +18,7 @@
             
             <h2>Buddy's Profile</h2>
             <div class="profilePicContainer">
-                <img id="imagePreview" src="/images/petDesc/buddy4.png" alt="Current Image" width="200px">
+                <img id="imagePreview" src="/images/pet_images/<%= animal.animal_id %>/profile.jpeg" alt="Current Image" width="200px">
             </div>
             <p><strong>Animal's ID:</strong> <%= animal.animal_id%></p>
             <p><strong>Name:</strong> <%= animal.name%></p>
@@ -40,13 +40,19 @@
             <p><strong>Is Desexed:</strong> <%= animal.is_desexed%></p>
 
             <h2>Pet's Medical Record</h2>
-            <p><strong>Vaccination Type:</strong> Rabies</p>
-            <p><strong>Vaccination Date:</strong> 2024-10-14</p>
-            <p><strong>Vaccination Dose:</strong> 1</p>
+            <p><strong>Vaccination Type: </strong><%= animal.vacc_type ? animal.vacc_type : 'No data' %></p>
+            <p><strong>Vaccination Date: </strong><%= animal.vacc_date ? animal.vacc_date : 'No data' %></p>
+            <p><strong>Vaccination Dose: </strong><%= animal.vacc_dose ? animal.vacc_dose : 'No data' %></p>
             <div class="buttonContainer">
                 <a href="http://localhost:3000/admin/adminTable" class="backButton">Back</a>
             </div>
         </div>
     </main>
+    <!-- Add this at the end of the <body> tag -->
+    <script src="/javascripts/auth.js"></script>
+    <script>
+      // This will run when the page is loaded
+      checkLoginStatusAndRedirect();
+    </script>
 </body>
 </html>

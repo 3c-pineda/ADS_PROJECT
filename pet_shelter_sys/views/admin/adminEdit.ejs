@@ -200,6 +200,12 @@
         </div>
         </form>
     </main>
+    <!-- Add this at the end of the <body> tag -->
+    <script src="/javascripts/auth.js"></script>
+    <script>
+      // This will run when the page is loaded
+      checkLoginStatusAndRedirect();
+    </script>
     <script>
         document.getElementById('submitButton').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent form from submitting immediately

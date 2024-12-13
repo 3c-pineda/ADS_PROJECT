@@ -601,7 +601,8 @@ def login_admin():
             admin = cursor.fetchone()
             stored_password = admin['password']
             try_password = data['password']
-            if bcrypt.checkpw(try_password.encode('utf-8'), stored_password.encode('utf-8')):
+            if stored_password == try_password:
+            #if bcrypt.checkpw(try_password.encode('utf-8'), stored_password.encode('utf-8')):
                 return jsonify({'message': 'Login successful'}), 200
             return jsonify({'error': 'Username or password incorrect.'}), 401
     except Exception as e:
@@ -655,6 +656,102 @@ def get_animals_about():
     finally:
         # Close the database connection
         connection.close()
+
+@app.route('/species-distribution', methods=['GET'])
+def species_distribution():
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+
+    try:
+        with connection.cursor() as cursor:
+            # Query to count species occurrences
+            cursor.execute("""
+                SELECT species, COUNT(*) as count
+                FROM animal_information
+                GROUP BY species
+            """)
+            results = cursor.fetchall()
+
+        # Convert to JSON format
+        data = {
+            "labels": [row[0] for row in results],
+            "values": [row[1] for row in results]
+        }
+        return jsonify(data)
+
+    finally:
+        connection.close()
+
+
+
+@app.route('/adoption-status', methods=['GET'])
+def adoption_status():
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    try:
+        with connection.cursor() as cursor:
+            # Query to count adoption statuses
+            cursor.execute("""
+                SELECT adoption_status, COUNT(*) as count
+                FROM animal_information
+                GROUP BY adoption_status
+            """)
+            results = cursor.fetchall()
+
+        # Convert to JSON format
+        data = {
+            "labels": [row[0] for row in results],
+            "values": [row[1] for row in results]
+        }
+        return jsonify(data)
+
+    finally:
+        connection.close()
+
+
+@app.route('/age-distribution', methods=['GET'])
+def age_distribution():
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    try:
+        with connection.cursor() as cursor:
+            # Query to categorize animals into age groups
+            cursor.execute("""
+                SELECT
+                    CASE
+                        WHEN age < 1 THEN 'Under 1 Year'
+                        WHEN age BETWEEN 1 AND 3 THEN '1-3 Years'
+                        WHEN age BETWEEN 4 AND 7 THEN '4-7 Years'
+                        ELSE '8+ Years'
+                    END as age_group,
+                    COUNT(*) as count
+                FROM animal_information
+                GROUP BY age_group
+            """)
+            results = cursor.fetchall()
+
+        # Convert to JSON format
+        data = {
+            "labels": [row[0] for row in results],
+            "values": [row[1] for row in results]
+        }
+        return jsonify(data)
+
+    finally:
+        connection.close()
+
 
 if __name__ == '__main__':
     app.run(debug=True)
